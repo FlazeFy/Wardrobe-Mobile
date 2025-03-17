@@ -68,7 +68,7 @@ class _StatsSectionMostClothesCtxState
     }).toList();
 
     return Container(
-      margin: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(spaceSM),
       child: moleculesChartPie(chartData, title),
     );
   }

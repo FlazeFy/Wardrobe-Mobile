@@ -7,6 +7,14 @@ class PieData {
   final String text;
 }
 
+class TwoLineData {
+  TwoLineData(this.xData, this.yData, this.zData, [this.text = ""]);
+  final String xData;
+  final num yData;
+  final num zData;
+  final String text;
+}
+
 class QueriesPieChartModel {
   String ctx;
   int total;
@@ -79,4 +87,31 @@ class ClothesContext {
 QueriesMostClothesCtxModel queriesMostClothesCtxModelFromJson(String jsonData) {
   final data = json.decode(jsonData);
   return QueriesMostClothesCtxModel.fromJson(data);
+}
+
+class StatsMonthlyClothesModel {
+  String ctx;
+  int totalCreated;
+  int totalBuyed;
+
+  StatsMonthlyClothesModel({
+    required this.ctx,
+    required this.totalCreated,
+    required this.totalBuyed,
+  });
+
+  factory StatsMonthlyClothesModel.fromJson(Map<dynamic, dynamic> map) {
+    return StatsMonthlyClothesModel(
+      ctx: map["context"],
+      totalCreated: map["total_created"],
+      totalBuyed: map["total_buyed"],
+    );
+  }
+}
+
+List<StatsMonthlyClothesModel> statsMonthlyClothesModelFromJson(
+    String jsonData) {
+  final data = json.decode(jsonData);
+  return List<StatsMonthlyClothesModel>.from(
+      data['data'].map((item) => StatsMonthlyClothesModel.fromJson(item)));
 }
