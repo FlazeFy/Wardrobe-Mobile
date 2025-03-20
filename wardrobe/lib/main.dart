@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/modules/sqlite/init.dart';
-import 'package:wardrobe/organisms/o_navbar.dart';
+import 'package:wardrobe/organisms/o_bottom_bar.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

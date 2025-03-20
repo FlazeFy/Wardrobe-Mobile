@@ -23,9 +23,7 @@ class AtomsText extends StatelessWidget {
     } else if (type == 'appbar-text') {
       return Text(text,
           style: const TextStyle(
-              fontSize: textLG,
-              fontWeight: FontWeight.bold,
-              color: whiteColor));
+              fontSize: textLG, fontWeight: FontWeight.bold, color: infoBG));
     } else if (type == 'page-title') {
       return Container(
           margin: const EdgeInsets.only(bottom: spaceMD),

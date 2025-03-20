@@ -7,7 +7,7 @@ import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/modules/api/question/model/commands.dart';
 import 'package:wardrobe/modules/api/question/service/commands.dart';
 import 'package:wardrobe/organisms/o_failed_dialog.dart';
-import 'package:wardrobe/organisms/o_navbar.dart';
+import 'package:wardrobe/organisms/o_bottom_bar.dart';
 import 'package:wardrobe/organisms/o_success_dialog.dart';
 
 class ProfileSectionPostQuestion extends StatefulWidget {

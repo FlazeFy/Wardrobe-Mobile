@@ -70,10 +70,12 @@ class QuestionCommandsService {
 
   Future<void> syncQuestions() async {
     final connectivityResult = await (Connectivity().checkConnectivity());
+    const token = '286|L5fqrLCDDCzPRLKngtm2FM9wq1IU2xFZSVAm10yp874a1a85';
 
     if (connectivityResult != ConnectivityResult.none) {
       List<AskQuestionModel> tempQuestion =
           await dbHelper.getUnsyncedQuestion();
+      int successSync = 0;
 
       for (var dt in tempQuestion) {
         final response = await client.post(
@@ -81,19 +83,27 @@ class QuestionCommandsService {
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': "Bearer ",
+            'Authorization': "Bearer $token",
           },
           body: jsonEncode({"question": dt.question}),
         );
 
         if (response.statusCode == 201 && dt.id != null) {
+          successSync++;
           await dbHelper.deleteQuestion(dt.id);
         }
       }
 
+      String status = successSync == 0 ? "Failed" : "Success";
+      String message = successSync == tempQuestion.length
+          ? "All stored questions have been synced!"
+          : successSync < tempQuestion.length && successSync > 0
+              ? "Some questions are not been synced!"
+              : "Failed to sync all question";
+
       Get.snackbar(
-        "Success",
-        "All stored questions have been synced!",
+        status,
+        message,
         colorText: whiteColor,
         backgroundColor: primaryColor,
       );
