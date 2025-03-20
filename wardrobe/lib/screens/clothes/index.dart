@@ -16,7 +16,7 @@ class StateClothesPageState extends State<ClothesPage> {
     return Scaffold(
         body: ListView(
       padding: EdgeInsets.all(spaceSM),
-      children: [
+      children: const [
         AtomsText(type: "page-title", text: "All Clothes"),
         AtomsText(
             type: "content-sub-title", text: "For more detail you can see the"),

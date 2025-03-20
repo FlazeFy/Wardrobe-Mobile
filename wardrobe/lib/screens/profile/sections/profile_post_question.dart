@@ -52,53 +52,56 @@ class StateProfileSectionPostQuestion
             label: null,
             controller: questionCtrl,
           ),
-          AtomsButton(
-            type: "btn-success",
-            text: isLoadPost ? "Sending..." : "Send Question",
-            action: () async {
-              if (isLoadPost) return;
+          Row(
+            children: [
+              AtomsButton(
+                type: "btn-success",
+                text: isLoadPost ? "Sending..." : "Send Question",
+                action: () async {
+                  if (isLoadPost) return;
 
-              setState(() => isLoadPost = true);
+                  setState(() => isLoadPost = true);
 
-              String allMsg = "";
-              bool isValid = true;
+                  String allMsg = "";
+                  bool isValid = true;
 
-              if (questionCtrl.text.trim().isEmpty) {
-                isValid = false;
-                allMsg += "The question can't be empty.";
-              }
-
-              if (isValid) {
-                AskQuestionModel data = AskQuestionModel(
-                  question: questionCtrl.text.trim(),
-                );
-
-                try {
-                  var response = await apiCommand.postAskQuestion(data);
-                  var status = response[0]['status'];
-                  var msg = response[0]['message'] ?? "An error occurred";
-
-                  if (status == 200) {
-                    Get.to(const OrganismsBottomBar());
-                    Get.dialog(OrganismsSuccessDialog(text: msg));
-                    questionCtrl.clear(); // Clear input on success
-                  } else {
-                    Get.dialog(
-                        OrganismsFailedDialog(text: msg, type: "add_question"));
+                  if (questionCtrl.text.trim().isEmpty) {
+                    isValid = false;
+                    allMsg += "The question can't be empty.";
                   }
-                } catch (e) {
-                  print(e);
-                  // Get.dialog(const OrganismsFailedDialog(
-                  //     text: "Something went wrong. Please try again.",
-                  //     type: "add_question"));
-                }
-              } else {
-                Get.dialog(OrganismsFailedDialog(text: allMsg, type: null));
-              }
 
-              setState(() => isLoadPost = false);
-            },
-          ),
+                  if (isValid) {
+                    AskQuestionModel data = AskQuestionModel(
+                      question: questionCtrl.text.trim(),
+                    );
+
+                    try {
+                      var response = await apiCommand.postAskQuestion(data);
+                      var status = response[0]['status'];
+                      var msg = response[0]['message'] ?? "An error occurred";
+
+                      if (status == 200) {
+                        Get.to(const OrganismsBottomBar());
+                        Get.dialog(OrganismsSuccessDialog(text: msg));
+                        questionCtrl.clear(); // Clear input on success
+                      } else {
+                        Get.dialog(OrganismsFailedDialog(
+                            text: msg, type: "add_question"));
+                      }
+                    } catch (e) {
+                      Get.dialog(const OrganismsFailedDialog(
+                          text: "Something went wrong. Please try again.",
+                          type: "add_question"));
+                    }
+                  } else {
+                    Get.dialog(OrganismsFailedDialog(text: allMsg, type: null));
+                  }
+
+                  setState(() => isLoadPost = false);
+                },
+              ),
+            ],
+          )
         ],
       ),
     );

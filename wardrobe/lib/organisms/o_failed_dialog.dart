@@ -20,7 +20,7 @@ class StateFailedDialog extends State<OrganismsFailedDialog> {
     return AlertDialog(
       contentPadding: const EdgeInsets.all(spaceSM),
       title: null,
-      backgroundColor: darkColor,
+      backgroundColor: whiteColor,
       content: SizedBox(
         width: fullWidth,
         height: 320,
