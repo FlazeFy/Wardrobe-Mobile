@@ -5,21 +5,23 @@ import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/screens/calendar/index.dart';
 import 'package:wardrobe/screens/clothes/index.dart';
 import 'package:wardrobe/screens/home/index.dart';
+import 'package:wardrobe/screens/profile/index.dart';
 import 'package:wardrobe/screens/stats/index.dart';
 
-class BottomBar extends StatefulWidget {
-  const BottomBar({key}) : super(key: key);
+class OrganismsBottomBar extends StatefulWidget {
+  const OrganismsBottomBar({key}) : super(key: key);
 
   @override
-  BottomBarState createState() => BottomBarState();
+  OrganismsBottomBarState createState() => OrganismsBottomBarState();
 }
 
-class BottomBarState extends State<BottomBar> {
+class OrganismsBottomBarState extends State<OrganismsBottomBar> {
   final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
     const ClothesPage(),
     const CalendarPage(),
     const StatsPage(),
+    const ProfilePage()
   ];
 
   @override
@@ -64,6 +66,9 @@ class BottomBarState extends State<BottomBar> {
                     ),
                     label: 'Stats',
                   ),
+                  BottomNavigationBarItem(
+                      icon: FaIcon(FontAwesomeIcons.user, color: whiteColor),
+                      label: 'Profile')
                 ],
                 backgroundColor: whiteColor,
                 unselectedItemColor: shadowColor,

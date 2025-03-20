@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/modules/api/clothes/model/queries.dart';
 import 'package:wardrobe/modules/api/clothes/service/queries.dart';

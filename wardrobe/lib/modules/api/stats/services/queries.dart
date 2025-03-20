@@ -21,7 +21,7 @@ class QueriesStatsService {
         ? DateTime.tryParse(prefs.getString("last-hit-$backupKey") ?? '')
         : null;
     // final token = prefs.getString('token_key');
-    final token = '286|L5fqrLCDDCzPRLKngtm2FM9wq1IU2xFZSVAm10yp874a1a85';
+    const token = '286|L5fqrLCDDCzPRLKngtm2FM9wq1IU2xFZSVAm10yp874a1a85';
     final header = {
       'Accept': 'application/json',
       'Authorization': "Bearer $token",
@@ -103,7 +103,7 @@ class QueriesStatsService {
         ? DateTime.tryParse(prefs.getString("last-hit-$backupKey") ?? '')
         : null;
     // final token = prefs.getString('token_key');
-    final token = '286|L5fqrLCDDCzPRLKngtm2FM9wq1IU2xFZSVAm10yp874a1a85';
+    const token = '286|L5fqrLCDDCzPRLKngtm2FM9wq1IU2xFZSVAm10yp874a1a85';
 
     final header = {
       'Accept': 'application/json',

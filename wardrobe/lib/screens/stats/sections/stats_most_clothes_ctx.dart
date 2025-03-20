@@ -36,7 +36,7 @@ class _StatsSectionMostClothesCtxState
             );
           } else if (snapshot.connectionState == ConnectionState.done) {
             if (!snapshot.hasData) {
-              return Center(child: Text("No data available"));
+              return const Center(child: Text("No data available"));
             }
             QueriesMostClothesCtxModel contents = snapshot.data!;
             List<Widget> pieCharts = [];

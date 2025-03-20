@@ -18,7 +18,7 @@ Widget moleculesChartPie(List<PieData> chartData, String title) {
               ),
             )
           ],
-          borderRadius: BorderRadius.all(Radius.circular(roundedJumbo))),
+          borderRadius: const BorderRadius.all(Radius.circular(roundedJumbo))),
       child: SfCircularChart(
           title: ChartTitle(
               text: title,
