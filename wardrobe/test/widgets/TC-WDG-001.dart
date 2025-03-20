@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -10,9 +9,9 @@ import 'package:wardrobe/screens/profile/index.dart';
 import 'package:wardrobe/screens/stats/index.dart';
 
 void main() {
-  testWidgets('Validate The Menu List For A Signed User',
+  testWidgets('TC-WDG-001 - Validate The Menu List For A Signed User',
       (WidgetTester tester) async {
-    // Step 1: Visit Login Page
+    // Step 1: Visit the Home screen
     await tester.pumpWidget(
       const GetMaterialApp(
         home: OrganismsBottomBar(),
@@ -22,9 +21,10 @@ void main() {
     await tester.pump();
 
     // Step 2: Check if navbar exists
-    expect(find.byType(HomePage), findsOneWidget);
+    expect(find.byType(OrganismsBottomBar), findsOneWidget);
 
     // Step 3: Validate menu items
+    expect(find.byType(HomePage), findsOneWidget);
     await tester.tap(find.byWidgetPredicate(
       (widget) => widget is FaIcon && widget.icon == FontAwesomeIcons.shirt,
     ));
