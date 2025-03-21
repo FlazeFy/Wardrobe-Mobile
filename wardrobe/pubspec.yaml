@@ -45,6 +45,10 @@ dependencies:
   syncfusion_flutter_charts: ^20.4.0
   path_provider: ^2.1.2
   sqflite: ^2.3.2
+  firebase_core: ^2.24.2
+  flutter_local_notifications: ^17.2.4
+  firebase_messaging: ^14.7.10
+  firebase_crashlytics: ^3.4.9
 
 dev_dependencies:
   flutter_test:
