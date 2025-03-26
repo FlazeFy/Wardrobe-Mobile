@@ -49,6 +49,7 @@ dependencies:
   flutter_local_notifications: ^17.2.4
   firebase_messaging: ^14.7.10
   firebase_crashlytics: ^3.4.9
+  art_sweetalert: ^0.0.5
 
 dev_dependencies:
   flutter_test:

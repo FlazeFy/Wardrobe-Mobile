@@ -89,7 +89,7 @@ class StateLandingSectionLogin extends State<LandingSectionLogin> {
                           Get.snackbar('failed', response[0]['message']);
                         }
                       } catch (e) {
-                        Get.snackbar('error', e.toString());
+                        Get.snackbar('error', 'something went wrong');
                       }
                     }
                   },

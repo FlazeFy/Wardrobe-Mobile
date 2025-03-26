@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:wardrobe/atoms/a_button.dart';
 import 'package:wardrobe/atoms/a_input.dart';
@@ -57,6 +58,8 @@ class StateProfileSectionPostQuestion
               AtomsButton(
                 type: "btn-success",
                 text: isLoadPost ? "Sending..." : "Send Question",
+                icon: const FaIcon(FontAwesomeIcons.solidPaperPlane,
+                    color: whiteColor, size: textMD),
                 action: () async {
                   if (isLoadPost) return;
 

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wardrobe/atoms/a_input.dart';
-import 'package:wardrobe/atoms/a_text.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/screens/landing/sections/landing_login.dart';
 
