@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:wardrobe/design_tokens/global.dart';
 import 'package:wardrobe/design_tokens/style.dart';
+import 'package:wardrobe/modules/api/notification/model/command.dart';
+import 'package:wardrobe/modules/api/notification/service/command.dart';
 import 'package:wardrobe/modules/sqlite/init.dart';
 import 'package:wardrobe/organisms/o_bottom_bar.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -60,9 +62,13 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
+  late NotificationCommandsService notificationCommandsService;
+
   @override
   void initState() {
     super.initState();
+    notificationCommandsService = NotificationCommandsService();
+
     var initializationSettingsAndroid =
         const AndroidInitializationSettings('@mipmap/ic_launcher');
     var initializationSettings =
@@ -118,6 +124,15 @@ class MyAppState extends State<MyApp> {
     token = await FirebaseMessaging.instance.getToken();
 
     print(token);
+    FCMModel data = FCMModel(firebaseFcm: "$token");
+    try {
+      var response = await notificationCommandsService.updateFcm(data);
+      if (response[0]['status'] == false) {
+        Get.snackbar('error', response[0]['message']);
+      }
+    } catch (e) {
+      Get.snackbar('error', 'Something went wrong');
+    }
   }
 
   @override
@@ -128,10 +143,10 @@ class MyAppState extends State<MyApp> {
       DeviceOrientation.portraitDown,
     ]);
 
-    return GetMaterialApp(
+    return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Wardrobe',
-      home: const OrganismsBottomBar(),
+      home: OrganismsBottomBar(),
     );
   }
 }

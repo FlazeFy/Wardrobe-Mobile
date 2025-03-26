@@ -21,7 +21,7 @@ class QuestionCommandsService {
     final connectivityResult = await (Connectivity().checkConnectivity());
     const token = '286|L5fqrLCDDCzPRLKngtm2FM9wq1IU2xFZSVAm10yp874a1a85';
 
-    if (connectivityResult != ConnectivityResult.none) {
+    if (connectivityResult == ConnectivityResult.none) {
       await dbHelper.insertQuestion(question: data.question);
 
       Get.snackbar("Warning",
