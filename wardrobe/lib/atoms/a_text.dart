@@ -37,8 +37,18 @@ class AtomsText extends StatelessWidget {
       return Container(
           margin: const EdgeInsets.only(bottom: spaceSM),
           child: Text(text,
-              style: const TextStyle(
-                  fontSize: textLG, fontWeight: FontWeight.w600)));
+              style: TextStyle(
+                  color: color ?? darkColor,
+                  fontSize: textLG,
+                  fontWeight: FontWeight.w600)));
+    } else if (type == 'input-label') {
+      return Container(
+          margin: const EdgeInsets.symmetric(vertical: spaceXXSM),
+          child: Text(text,
+              style: TextStyle(
+                  color: color ?? darkColor,
+                  fontSize: textXMD,
+                  fontWeight: FontWeight.w600)));
     } else if (type == 'content-sub-title') {
       return Container(
           margin: const EdgeInsets.only(bottom: spaceMini),

@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wardrobe/design_tokens/global.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/modules/api/notification/model/command.dart';
@@ -12,6 +13,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:wardrobe/screens/landing/index.dart';
 
 bool shouldUseFirestoreEmulator = false;
 
@@ -51,11 +53,19 @@ Future<void> main() async {
   final DatabaseHelper dbHelper = DatabaseHelper();
 
   await dbHelper.database;
-  runApp(const MyApp());
+
+  bool isLogin = false;
+  final prefs = await SharedPreferences.getInstance();
+  if (prefs.containsKey('auth_key')) {
+    isLogin = true;
+  }
+
+  runApp(MyApp(isLogin: isLogin));
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  MyApp({super.key, required this.isLogin});
+  bool isLogin;
 
   @override
   MyAppState createState() => MyAppState();
@@ -143,10 +153,10 @@ class MyAppState extends State<MyApp> {
       DeviceOrientation.portraitDown,
     ]);
 
-    return const GetMaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Wardrobe',
-      home: OrganismsBottomBar(),
+      home: widget.isLogin ? const OrganismsBottomBar() : const LoginPage(),
     );
   }
 }

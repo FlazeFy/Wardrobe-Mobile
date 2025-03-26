@@ -38,3 +38,21 @@ String getMessageResponseFromObject(val, type) {
     return res;
   }
 }
+
+String getErrorValidation(dynamic val) {
+  List<String> messages = [];
+
+  if (val is! String) {
+    val.forEach((key, error) {
+      if (error is List) {
+        messages.addAll(error.map((e) => e.toString()));
+      } else if (error is String) {
+        messages.add(error);
+      }
+    });
+
+    return messages.join(', ').replaceAll('.', '');
+  } else {
+    return val;
+  }
+}
