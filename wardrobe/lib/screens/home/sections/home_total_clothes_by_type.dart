@@ -15,12 +15,12 @@ class HomeSectionTotalClothesByType extends StatefulWidget {
 
 class _HomeSectionTotalClothesByTypeState
     extends State<HomeSectionTotalClothesByType> {
-  QueriesStatsService? apiService;
+  StatsQueriesService? apiService;
 
   @override
   void initState() {
     super.initState();
-    apiService = QueriesStatsService();
+    apiService = StatsQueriesService();
   }
 
   @override

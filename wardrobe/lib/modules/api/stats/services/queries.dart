@@ -7,7 +7,7 @@ import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/modules/api/stats/model/queries.dart';
 import 'package:wardrobe/modules/helpers/generator.dart';
 
-class QueriesStatsService {
+class StatsQueriesService {
   final String baseUrl = "http://10.0.2.2:8000";
   DateTime now = DateTime.now();
   Client client = Client();
@@ -252,7 +252,7 @@ class QueriesStatsService {
     }
   }
 
-  Future<ClothesSummary?> getClothesSummary() async {
+  Future<ClothesSummaryModel?> getClothesSummary() async {
     final prefs = await SharedPreferences.getInstance();
     final connectivityResult = await (Connectivity().checkConnectivity());
     String backupKey = "clothes-summary-sess";

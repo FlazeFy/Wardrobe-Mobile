@@ -15,12 +15,12 @@ class HomeSectionClothesSummary extends StatefulWidget {
 }
 
 class _HomeSectionClothesSummaryState extends State<HomeSectionClothesSummary> {
-  QueriesStatsService? apiService;
+  StatsQueriesService? apiService;
 
   @override
   void initState() {
     super.initState();
-    apiService = QueriesStatsService();
+    apiService = StatsQueriesService();
   }
 
   @override
@@ -29,15 +29,15 @@ class _HomeSectionClothesSummaryState extends State<HomeSectionClothesSummary> {
       maintainBottomViewPadding: false,
       child: FutureBuilder(
         future: apiService?.getClothesSummary(),
-        builder:
-            (BuildContext context, AsyncSnapshot<ClothesSummary?> snapshot) {
+        builder: (BuildContext context,
+            AsyncSnapshot<ClothesSummaryModel?> snapshot) {
           if (snapshot.hasError) {
             return Center(
               child: Text(
                   "Something wrong with message: ${snapshot.error.toString()}"),
             );
           } else if (snapshot.connectionState == ConnectionState.done) {
-            ClothesSummary? contents = snapshot.data;
+            ClothesSummaryModel? contents = snapshot.data;
 
             return _buildListView(contents);
           } else {
@@ -48,7 +48,7 @@ class _HomeSectionClothesSummaryState extends State<HomeSectionClothesSummary> {
     );
   }
 
-  Widget _buildListView(ClothesSummary? data) {
+  Widget _buildListView(ClothesSummaryModel? data) {
     return Container(
       width: Get.width,
       padding: const EdgeInsets.all(spaceLG),

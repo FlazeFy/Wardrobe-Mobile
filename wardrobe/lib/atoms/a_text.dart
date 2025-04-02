@@ -7,6 +7,7 @@ class AtomsText extends StatelessWidget {
   final TextAlign? align;
   final Color? color;
   final FontStyle? fstyle;
+  final double? marginBottom;
 
   const AtomsText(
       {super.key,
@@ -14,7 +15,8 @@ class AtomsText extends StatelessWidget {
       required this.text,
       this.align,
       this.color,
-      this.fstyle});
+      this.fstyle,
+      this.marginBottom});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class AtomsText extends StatelessWidget {
                   fontWeight: FontWeight.w700)));
     } else if (type == 'content-title-main') {
       return Container(
-          margin: const EdgeInsets.only(bottom: spaceSM),
+          margin: EdgeInsets.only(bottom: marginBottom ?? spaceSM),
           child: color == null
               ? Stack(
                   children: [
@@ -91,7 +93,7 @@ class AtomsText extends StatelessWidget {
           child: Text(text,
               style: TextStyle(
                   color: color ?? darkColor,
-                  fontSize: textMD,
+                  fontSize: textXMD,
                   fontWeight: FontWeight.w500)));
     } else if (type == 'content-body') {
       return Container(

@@ -15,12 +15,12 @@ class StatsSectionMonthlyClothes extends StatefulWidget {
 class _StatsSectionMonthlyClothesState
     extends State<StatsSectionMonthlyClothes> {
   List<TwoLineData> chartData = [];
-  QueriesStatsService? apiService;
+  StatsQueriesService? apiService;
 
   @override
   void initState() {
     super.initState();
-    apiService = QueriesStatsService();
+    apiService = StatsQueriesService();
   }
 
   @override

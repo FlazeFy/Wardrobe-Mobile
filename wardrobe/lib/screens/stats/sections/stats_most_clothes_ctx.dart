@@ -14,12 +14,12 @@ class StatsSectionMostClothesCtx extends StatefulWidget {
 
 class _StatsSectionMostClothesCtxState
     extends State<StatsSectionMostClothesCtx> {
-  QueriesStatsService? apiService;
+  StatsQueriesService? apiService;
 
   @override
   void initState() {
     super.initState();
-    apiService = QueriesStatsService();
+    apiService = StatsQueriesService();
   }
 
   @override

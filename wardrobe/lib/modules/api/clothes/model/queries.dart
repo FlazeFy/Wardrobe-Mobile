@@ -58,3 +58,57 @@ List<ClothesHeaderAllModel> clothesAllHeaderModelFromJson(String jsonData) {
   return List<ClothesHeaderAllModel>.from(
       data['data']['data'].map((item) => ClothesHeaderAllModel.fromJson(item)));
 }
+
+class LastOutfitClothesModel {
+  String clothesName;
+  String clothesType;
+  String? clothesImage;
+
+  LastOutfitClothesModel({
+    required this.clothesName,
+    required this.clothesType,
+    this.clothesImage,
+  });
+
+  factory LastOutfitClothesModel.fromJson(Map<String, dynamic> json) {
+    return LastOutfitClothesModel(
+      clothesName: json['clothes_name'],
+      clothesType: json['clothes_type'],
+      clothesImage: json['clothes_image'],
+    );
+  }
+}
+
+class LastOutfitModel {
+  String id;
+  String outfitName;
+  int isFavorite;
+  int totalUsed;
+  String lastUsed;
+  List<LastOutfitClothesModel> clothes;
+
+  LastOutfitModel(
+      {required this.id,
+      required this.outfitName,
+      required this.isFavorite,
+      required this.totalUsed,
+      required this.lastUsed,
+      required this.clothes});
+
+  factory LastOutfitModel.fromJson(Map<String, dynamic> map) {
+    return LastOutfitModel(
+        id: map['id'],
+        outfitName: map['outfit_name'],
+        isFavorite: map['is_favorite'],
+        totalUsed: map['total_used'],
+        lastUsed: map['last_used'],
+        clothes: (map['clothes'] as List)
+            .map((item) => LastOutfitClothesModel.fromJson(item))
+            .toList());
+  }
+}
+
+LastOutfitModel queriesLastOutfitModelFromJson(String jsonData) {
+  final data = json.decode(jsonData);
+  return LastOutfitModel.fromJson(data['data']);
+}
