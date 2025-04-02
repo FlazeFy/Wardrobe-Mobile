@@ -15,7 +15,8 @@ class StateClothesPageState extends State<ClothesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: ListView(
-      padding: EdgeInsets.all(spaceSM),
+      padding:
+          const EdgeInsets.symmetric(horizontal: spaceMD, vertical: spaceJumbo),
       children: const [
         AtomsText(type: "page-title", text: "All Clothes"),
         AtomsText(

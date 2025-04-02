@@ -1,3 +1,6 @@
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:intl/intl.dart';
+
 String getCleanTitleFromCtx(String val) {
   try {
     String newVal = val.replaceAll('_', ' ');
@@ -55,4 +58,44 @@ String getErrorValidation(dynamic val) {
   } else {
     return val;
   }
+}
+
+String numberToPrice(double val) {
+  try {
+    if (val >= 1000) {
+      String res = (val / 1000).toStringAsFixed(0);
+      return '${res}K';
+    } else {
+      return val.toString();
+    }
+  } catch (error) {
+    throw Exception(error.toString());
+  }
+}
+
+String commaThousandFormat(double val) {
+  try {
+    final formatter = NumberFormat("#,###", "en_US");
+    return formatter.format(val);
+  } catch (error) {
+    throw Exception(error.toString());
+  }
+}
+
+String formatCurrency(double val) {
+  // final prefs = await SharedPreferences.getInstance();
+  // String currencyType =
+  //     prefs.getString("currency_type") ?? 'Abbreviated Numeral';
+  String currencyType = 'Abbreviated Numeral';
+
+  if (currencyType == 'Abbreviated Numeral') {
+    return "Rp. ${numberToPrice(val)}";
+  } else if (currencyType == 'Rupiah' ||
+      currencyType == 'Rupiah With Zero Sen') {
+    return "Rp. ${commaThousandFormat(val)}${currencyType == 'Rupiah With Zero Sen' ? '.00' : ''}";
+  } else if (currencyType == 'Rupiah Without Format') {
+    return "Rp. $val";
+  }
+
+  return "Rp. $val";
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wardrobe/design_tokens/style.dart';
+import 'package:wardrobe/screens/home/sections/home_clothes_summary.dart';
 import 'package:wardrobe/screens/home/sections/home_total_clothes_by_type.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,7 +20,8 @@ class StateHomePageState extends State<HomePage> {
       children: const [
         Row(
           children: [HomeSectionTotalClothesByType()],
-        )
+        ),
+        HomeSectionClothesSummary()
       ],
     ));
   }

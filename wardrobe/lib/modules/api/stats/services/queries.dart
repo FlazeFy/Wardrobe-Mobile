@@ -251,4 +251,83 @@ class QueriesStatsService {
       }
     }
   }
+
+  Future<ClothesSummary?> getClothesSummary() async {
+    final prefs = await SharedPreferences.getInstance();
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    String backupKey = "clothes-summary-sess";
+    DateTime? lastHit;
+    lastHit = prefs.containsKey("last-hit-$backupKey")
+        ? DateTime.tryParse(prefs.getString("last-hit-$backupKey") ?? '')
+        : null;
+    final token = prefs.getString('auth_key');
+    final header = {
+      'Accept': 'application/json',
+      'Authorization': "Bearer $token",
+    };
+
+    if (!prefs.containsKey(backupKey) ||
+        lastHit == null ||
+        now.difference(lastHit).inSeconds > statsFetchRestTime) {
+      if (connectivityResult == ConnectivityResult.none) {
+        if (prefs.containsKey(backupKey)) {
+          final data = prefs.getString(backupKey);
+          if (data != null) {
+            if (!isOffline) {
+              Get.snackbar(
+                  "Warning", "Lost connection, all data shown are local",
+                  colorText: whiteColor,
+                  backgroundColor: darkColor,
+                  borderColor: primaryColor,
+                  borderWidth: spaceMini / 2.5);
+              isOffline = true;
+            }
+            return queriesClothesSummaryModelFromJson(data);
+          } else {
+            return null;
+          }
+        } else {
+          return null;
+        }
+      } else {
+        final response = await client.get(
+            Uri.parse("$baseUrl/api/v1/stats/clothes/summary"),
+            headers: header);
+        if (response.statusCode == 200) {
+          if (isOffline) {
+            Get.snackbar(
+                "Information", "Welcome back, all data are now realtime",
+                colorText: whiteColor,
+                backgroundColor: darkColor,
+                borderColor: primaryColor,
+                borderWidth: spaceMini / 2.5);
+            isOffline = false;
+          }
+          prefs.setString("last-hit-$backupKey", generateTempDataKey());
+          prefs.setString(backupKey, response.body);
+          return queriesClothesSummaryModelFromJson(response.body);
+        } else if (response.statusCode == 401) {
+          return null;
+        } else {
+          if (prefs.containsKey(backupKey)) {
+            final data = prefs.getString(backupKey);
+            if (data != null) {
+              return queriesClothesSummaryModelFromJson(response.body);
+            } else {
+              return null;
+            }
+          } else {
+            return null;
+          }
+        }
+      }
+    } else {
+      final data = prefs.getString(backupKey);
+      if (data != null) {
+        return queriesClothesSummaryModelFromJson(data);
+      } else {
+        return null;
+      }
+    }
+  }
 }

@@ -115,3 +115,30 @@ List<StatsMonthlyClothesModel> statsMonthlyClothesModelFromJson(
   return List<StatsMonthlyClothesModel>.from(
       data['data'].map((item) => StatsMonthlyClothesModel.fromJson(item)));
 }
+
+class ClothesSummary {
+  int totalClothes;
+  int maxPrice;
+  int avgPrice;
+  int sumClothesQty;
+
+  ClothesSummary(
+      {required this.totalClothes,
+      required this.maxPrice,
+      required this.avgPrice,
+      required this.sumClothesQty});
+
+  factory ClothesSummary.fromJson(Map<String, dynamic> map) {
+    return ClothesSummary(
+      totalClothes: map["total_clothes"],
+      maxPrice: map["max_price"],
+      avgPrice: map["avg_price"],
+      sumClothesQty: map["sum_clothes_qty"],
+    );
+  }
+}
+
+ClothesSummary queriesClothesSummaryModelFromJson(String jsonData) {
+  final data = json.decode(jsonData);
+  return ClothesSummary.fromJson(data['data']);
+}

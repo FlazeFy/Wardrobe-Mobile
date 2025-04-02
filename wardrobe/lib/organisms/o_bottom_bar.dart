@@ -42,8 +42,8 @@ class OrganismsBottomBarState extends State<OrganismsBottomBar> {
               currentIndex: selectedIndex,
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                  icon: FaIcon(FontAwesomeIcons.house),
-                  label: 'Home',
+                  icon: FaIcon(FontAwesomeIcons.table),
+                  label: 'Dashboard',
                 ),
                 BottomNavigationBarItem(
                   icon: FaIcon(FontAwesomeIcons.shirt),

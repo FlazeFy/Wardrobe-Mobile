@@ -16,7 +16,8 @@ class StateStatsPageState extends State<StatsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: ListView(
-      padding: const EdgeInsets.all(spaceSM),
+      padding:
+          const EdgeInsets.symmetric(horizontal: spaceMD, vertical: spaceJumbo),
       children: const [
         AtomsText(type: "page-title", text: "Most Used Clothes"),
         AtomsText(

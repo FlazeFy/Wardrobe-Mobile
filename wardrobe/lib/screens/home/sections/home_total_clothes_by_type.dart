@@ -61,8 +61,7 @@ class _HomeSectionTotalClothesByTypeState
         ),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-        const AtomsText(
-            type: "content-title-main", text: "All Types", color: whiteColor),
+        const AtomsText(type: "content-title-main", text: "All Types"),
         Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: data

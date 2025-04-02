@@ -36,31 +36,39 @@ class AtomsText extends StatelessWidget {
     } else if (type == 'content-title-main') {
       return Container(
           margin: const EdgeInsets.only(bottom: spaceSM),
-          child: Stack(
-            children: [
-              Text(
-                text,
-                style: TextStyle(
-                  fontSize: textJumbo,
-                  letterSpacing: 2.25,
-                  fontWeight: FontWeight.w700,
-                  foreground: Paint()
-                    ..style = PaintingStyle.stroke
-                    ..strokeWidth = 2
-                    ..color = whiteColor,
-                ),
-              ),
-              Text(
-                text,
-                style: const TextStyle(
-                  fontSize: textJumbo,
-                  letterSpacing: 2.25,
-                  fontWeight: FontWeight.w700,
-                  color: infoBG, // Fill color
-                ),
-              ),
-            ],
-          ));
+          child: color == null
+              ? Stack(
+                  children: [
+                    Text(
+                      text,
+                      style: TextStyle(
+                        fontSize: textJumbo - textMini / 2,
+                        letterSpacing: 2.25,
+                        fontWeight: FontWeight.w700,
+                        foreground: Paint()
+                          ..style = PaintingStyle.stroke
+                          ..strokeWidth = 2
+                          ..color = whiteColor,
+                      ),
+                    ),
+                    Text(
+                      text,
+                      style: const TextStyle(
+                        fontSize: textJumbo - textMini / 2,
+                        letterSpacing: 2.25,
+                        fontWeight: FontWeight.w700,
+                        color: infoBG, // Fill color
+                      ),
+                    ),
+                  ],
+                )
+              : Text(text,
+                  textAlign: align ?? TextAlign.start,
+                  style: TextStyle(
+                      color: color,
+                      letterSpacing: 2.25,
+                      fontSize: textJumbo,
+                      fontWeight: FontWeight.w800)));
     } else if (type == 'content-title') {
       return Container(
           margin: const EdgeInsets.only(bottom: spaceSM),

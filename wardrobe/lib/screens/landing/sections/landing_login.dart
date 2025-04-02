@@ -93,7 +93,7 @@ class StateLandingSectionLogin extends State<LandingSectionLogin> {
                       }
                     }
                   },
-                  icon: FaIcon(
+                  icon: const FaIcon(
                     FontAwesomeIcons.arrowRightToBracket,
                     color: whiteColor,
                     size: spaceXMD,
