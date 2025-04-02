@@ -20,8 +20,7 @@ class QueriesStatsService {
     lastHit = prefs.containsKey("last-hit-$backupKey")
         ? DateTime.tryParse(prefs.getString("last-hit-$backupKey") ?? '')
         : null;
-    // final token = prefs.getString('token_key');
-    const token = '286|L5fqrLCDDCzPRLKngtm2FM9wq1IU2xFZSVAm10yp874a1a85';
+    final token = prefs.getString('auth_key');
     final header = {
       'Accept': 'application/json',
       'Authorization': "Bearer $token",
@@ -102,9 +101,7 @@ class QueriesStatsService {
     lastHit = prefs.containsKey("last-hit-$backupKey")
         ? DateTime.tryParse(prefs.getString("last-hit-$backupKey") ?? '')
         : null;
-    // final token = prefs.getString('token_key');
-    const token = '286|L5fqrLCDDCzPRLKngtm2FM9wq1IU2xFZSVAm10yp874a1a85';
-
+    final token = prefs.getString('auth_key');
     final header = {
       'Accept': 'application/json',
       'Authorization': "Bearer $token",
@@ -170,6 +167,85 @@ class QueriesStatsService {
       final data = prefs.getString(backupKey);
       if (data != null) {
         return statsMonthlyClothesModelFromJson(data);
+      } else {
+        return [];
+      }
+    }
+  }
+
+  Future<List<QueriesPieChartModel>> getTotalClothesByType() async {
+    final prefs = await SharedPreferences.getInstance();
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    String backupKey = "total-clothes-by-type-sess";
+    DateTime? lastHit;
+    lastHit = prefs.containsKey("last-hit-$backupKey")
+        ? DateTime.tryParse(prefs.getString("last-hit-$backupKey") ?? '')
+        : null;
+    final token = prefs.getString('auth_key');
+    final header = {
+      'Accept': 'application/json',
+      'Authorization': "Bearer $token",
+    };
+
+    if (!prefs.containsKey(backupKey) ||
+        lastHit == null ||
+        now.difference(lastHit).inSeconds > statsFetchRestTime) {
+      if (connectivityResult == ConnectivityResult.none) {
+        if (prefs.containsKey(backupKey)) {
+          final data = prefs.getString(backupKey);
+          if (data != null) {
+            if (!isOffline) {
+              Get.snackbar(
+                  "Warning", "Lost connection, all data shown are local",
+                  colorText: whiteColor,
+                  backgroundColor: darkColor,
+                  borderColor: primaryColor,
+                  borderWidth: spaceMini / 2.5);
+              isOffline = true;
+            }
+            return queriesPieChartModelFromJson(data);
+          } else {
+            return [];
+          }
+        } else {
+          return [];
+        }
+      } else {
+        final response = await client.post(
+            Uri.parse("$baseUrl/api/v1/stats/clothes/by/clothes_type"),
+            headers: header);
+        if (response.statusCode == 200) {
+          if (isOffline) {
+            Get.snackbar(
+                "Information", "Welcome back, all data are now realtime",
+                colorText: whiteColor,
+                backgroundColor: darkColor,
+                borderColor: primaryColor,
+                borderWidth: spaceMini / 2.5);
+            isOffline = false;
+          }
+          prefs.setString("last-hit-$backupKey", generateTempDataKey());
+          prefs.setString(backupKey, response.body);
+          return queriesPieChartModelFromJson(response.body);
+        } else if (response.statusCode == 401) {
+          return [];
+        } else {
+          if (prefs.containsKey(backupKey)) {
+            final data = prefs.getString(backupKey);
+            if (data != null) {
+              return queriesPieChartModelFromJson(response.body);
+            } else {
+              return [];
+            }
+          } else {
+            return [];
+          }
+        }
+      }
+    } else {
+      final data = prefs.getString(backupKey);
+      if (data != null) {
+        return queriesPieChartModelFromJson(data);
       } else {
         return [];
       }

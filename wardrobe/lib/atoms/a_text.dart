@@ -33,6 +33,34 @@ class AtomsText extends StatelessWidget {
                   color: color ?? darkColor,
                   fontSize: textJumbo,
                   fontWeight: FontWeight.w700)));
+    } else if (type == 'content-title-main') {
+      return Container(
+          margin: const EdgeInsets.only(bottom: spaceSM),
+          child: Stack(
+            children: [
+              Text(
+                text,
+                style: TextStyle(
+                  fontSize: textJumbo,
+                  letterSpacing: 2.25,
+                  fontWeight: FontWeight.w700,
+                  foreground: Paint()
+                    ..style = PaintingStyle.stroke
+                    ..strokeWidth = 2
+                    ..color = whiteColor,
+                ),
+              ),
+              Text(
+                text,
+                style: const TextStyle(
+                  fontSize: textJumbo,
+                  letterSpacing: 2.25,
+                  fontWeight: FontWeight.w700,
+                  color: infoBG, // Fill color
+                ),
+              ),
+            ],
+          ));
     } else if (type == 'content-title') {
       return Container(
           margin: const EdgeInsets.only(bottom: spaceSM),

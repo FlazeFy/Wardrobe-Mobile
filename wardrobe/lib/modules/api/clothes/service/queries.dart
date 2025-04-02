@@ -21,8 +21,7 @@ class ClothesQueriesService {
     lastHit = prefs.containsKey("last-hit-$backupKey")
         ? DateTime.tryParse(prefs.getString("last-hit-$backupKey") ?? '')
         : null;
-    // final token = prefs.getString('token_key');
-    const token = '286|L5fqrLCDDCzPRLKngtm2FM9wq1IU2xFZSVAm10yp874a1a85';
+    final token = prefs.getString('auth_key');
     final header = {
       'Accept': 'application/json',
       'Authorization': "Bearer $token",

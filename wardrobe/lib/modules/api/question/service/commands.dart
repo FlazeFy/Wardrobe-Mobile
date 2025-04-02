@@ -17,9 +17,8 @@ class QuestionCommandsService {
   Future<List<Map<String, dynamic>>> postAskQuestion(
       AskQuestionModel data) async {
     final prefs = await SharedPreferences.getInstance();
-    // final token = prefs.getString('token_key');
+    final token = prefs.getString('auth_key');
     final connectivityResult = await (Connectivity().checkConnectivity());
-    const token = '286|L5fqrLCDDCzPRLKngtm2FM9wq1IU2xFZSVAm10yp874a1a85';
 
     if (connectivityResult == ConnectivityResult.none) {
       await dbHelper.insertQuestion(question: data.question);
