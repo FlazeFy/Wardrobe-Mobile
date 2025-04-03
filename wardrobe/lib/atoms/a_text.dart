@@ -109,11 +109,11 @@ class AtomsText extends StatelessWidget {
       return Container(
           margin: const EdgeInsets.only(bottom: spaceMini),
           child: Text("- $text -",
-              style: const TextStyle(
+              style: TextStyle(
                   fontSize: textMD,
                   fontStyle: FontStyle.italic,
                   fontWeight: FontWeight.normal,
-                  color: greyColor)));
+                  color: color ?? greyColor)));
     } else {
       return const Text("Default Title");
     }

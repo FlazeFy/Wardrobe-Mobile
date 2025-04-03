@@ -112,3 +112,52 @@ LastOutfitModel queriesLastOutfitModelFromJson(String jsonData) {
   final data = json.decode(jsonData);
   return LastOutfitModel.fromJson(data['data']);
 }
+
+class ClothesDeletedModel {
+  String id;
+  String clothesName;
+  String? clothesDesc;
+  String? clothesImage;
+  String clothesSize;
+  String clothesGender;
+  String clothesColor;
+  String clothesCategory;
+  String clothesType;
+  int clothesQty;
+  String deletedAt;
+
+  ClothesDeletedModel(
+      {required this.id,
+      required this.clothesName,
+      this.clothesDesc,
+      this.clothesImage,
+      required this.clothesSize,
+      required this.clothesGender,
+      required this.clothesColor,
+      required this.clothesCategory,
+      required this.clothesType,
+      required this.clothesQty,
+      required this.deletedAt});
+
+  factory ClothesDeletedModel.fromJson(Map<String, dynamic> map) {
+    return ClothesDeletedModel(
+      id: map['id'],
+      clothesName: map['clothes_name'],
+      clothesDesc: map['clothes_desc'],
+      clothesImage: map['clothes_image'],
+      clothesSize: map['clothes_size'],
+      clothesGender: map['clothes_gender'],
+      clothesColor: map['clothes_color'],
+      clothesCategory: map['clothes_category'],
+      clothesType: map['clothes_type'],
+      clothesQty: map['clothes_qty'],
+      deletedAt: map['deleted_at'],
+    );
+  }
+}
+
+List<ClothesDeletedModel> clothesDeletedModelFromJson(String jsonData) {
+  final data = json.decode(jsonData);
+  return List<ClothesDeletedModel>.from(
+      data['data']['data'].map((item) => ClothesDeletedModel.fromJson(item)));
+}

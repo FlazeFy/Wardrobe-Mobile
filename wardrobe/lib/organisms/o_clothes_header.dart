@@ -40,7 +40,10 @@ class OrganismsClothesHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                AtomsText(type: "content-title", text: item.clothesName),
+                AtomsText(
+                    type: "content-title",
+                    text: item.clothesName,
+                    color: blackColor),
                 AtomsText(
                     type: "content-sub-title",
                     text:

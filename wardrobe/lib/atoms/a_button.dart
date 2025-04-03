@@ -37,6 +37,8 @@ class AtomsButton extends StatelessWidget {
                   const BorderRadius.all(Radius.circular(roundedJumbo)),
             ),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 if (icon != null) ...[
                   Container(
