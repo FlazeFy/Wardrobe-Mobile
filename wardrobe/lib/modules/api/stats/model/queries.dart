@@ -236,3 +236,30 @@ List<CalendarModel> queriesCalendarModelFromJson(String jsonData) {
   return List<CalendarModel>.from(
       data['data'].map((item) => CalendarModel.fromJson(item)));
 }
+
+class WelcomeStatsModel {
+  int totalClothes;
+  int totalUser;
+  int totalSchedule;
+  int totalOutfitDecision;
+
+  WelcomeStatsModel(
+      {required this.totalClothes,
+      required this.totalUser,
+      required this.totalSchedule,
+      required this.totalOutfitDecision});
+
+  factory WelcomeStatsModel.fromJson(Map<String, dynamic> map) {
+    return WelcomeStatsModel(
+      totalClothes: map["total_clothes"],
+      totalUser: map["total_user"],
+      totalSchedule: map["total_schedule"],
+      totalOutfitDecision: map["total_outfit_decision"],
+    );
+  }
+}
+
+WelcomeStatsModel welcomeStatsModelFromJson(String jsonData) {
+  final data = json.decode(jsonData);
+  return WelcomeStatsModel.fromJson(data['data']);
+}

@@ -91,6 +91,7 @@ class AtomsText extends StatelessWidget {
       return Container(
           margin: const EdgeInsets.only(bottom: spaceMini),
           child: Text(text,
+              textAlign: align ?? TextAlign.start,
               style: TextStyle(
                   color: color ?? darkColor,
                   fontSize: textXMD,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/screens/landing/sections/landing_login.dart';
+import 'package:wardrobe/screens/landing/sections/landing_welcoming.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -19,7 +20,13 @@ class StateLoginPageState extends State<LoginPage> {
         body: ListView(
       padding:
           const EdgeInsets.symmetric(horizontal: spaceMD, vertical: spaceJumbo),
-      children: const [LandingSectionLogin()],
+      children: const [
+        LandingSectionLogin(),
+        SizedBox(height: spaceJumbo),
+        Divider(color: darkColor),
+        SizedBox(height: spaceSM),
+        LandingSectionWelcoming()
+      ],
     ));
   }
 }
