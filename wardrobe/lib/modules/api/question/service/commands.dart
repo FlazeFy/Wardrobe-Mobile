@@ -32,7 +32,7 @@ class QuestionCommandsService {
 
       return [
         {
-          "status": 200,
+          "status": 201,
           "message": "Question created",
         }
       ];
@@ -50,6 +50,7 @@ class QuestionCommandsService {
 
       var responseData = jsonDecode(response.body);
       if ([201, 404, 401, 500].contains(response.statusCode)) {
+        print(responseData);
         return [
           {
             "status": responseData["status"],

@@ -53,6 +53,7 @@ class StateProfileSectionPostQuestion
             type: "input-text",
             label: null,
             controller: questionCtrl,
+            keyName: 'question-body-input',
           ),
           Row(
             children: [
@@ -84,9 +85,10 @@ class StateProfileSectionPostQuestion
                       var status = response[0]['status'];
                       var msg = response[0]['message'] ?? "An error occurred";
 
-                      if (status == 200) {
+                      if (status == 'success') {
                         Get.to(const OrganismsBottomBar());
-                        Get.dialog(OrganismsSuccessDialog(text: msg));
+                        Get.dialog(OrganismsSuccessDialog(
+                            text: msg, keyName: 'success-add-question-popup'));
                         questionCtrl.clear(); // Clear input on success
                       } else {
                         Get.dialog(OrganismsFailedDialog(

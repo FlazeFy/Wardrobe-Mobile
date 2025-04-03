@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:wardrobe/atoms/a_button.dart';
 import 'package:wardrobe/atoms/a_input.dart';
 import 'package:wardrobe/organisms/o_bottom_bar.dart';
+import 'package:wardrobe/organisms/o_success_dialog.dart';
 import 'package:wardrobe/screens/profile/index.dart';
 
 void main() {
@@ -16,24 +17,28 @@ void main() {
     await tester.tap(find.byWidgetPredicate(
       (widget) => widget is FaIcon && widget.icon == FontAwesomeIcons.user,
     ));
-    await tester.pumpAndSettle();
+    await tester.pump();
     expect(find.byType(ProfilePage), findsOneWidget);
 
     // Step 2: In the "Ask A Question" section, user can see form question
     expect(find.text("Ask A Question"), findsOneWidget);
 
     // Step 3: Enter a question in the input field
-    await tester.enterText(find.byType(AtomsInput), "How does this app work?");
+    await tester.enterText(find.byKey(const Key('question-body-input')),
+        "How does this app work?");
     await tester.pump();
 
     // Step 4: Tap the "Send Question" button
     await tester.tap(find.widgetWithText(AtomsButton, "Send Question"));
     await tester.pump();
-    await tester.pumpAndSettle();
 
     // Step 5: A Pop Up Success will appear. Then tap "OK"
+    // check again
+    await tester.pump(const Duration(seconds: 5));
+    expect(find.byKey(const Key('success-add-question-popup')), findsOneWidget);
     expect(find.textContaining("Success").first, findsOneWidget,
         reason: "question created");
     await tester.tap(find.widgetWithText(InkWell, "OK"));
+    await tester.pumpAndSettle();
   });
 }

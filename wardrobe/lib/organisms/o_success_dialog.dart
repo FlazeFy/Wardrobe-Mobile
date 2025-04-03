@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 
 class OrganismsSuccessDialog extends StatelessWidget {
-  const OrganismsSuccessDialog({super.key, this.text});
+  const OrganismsSuccessDialog({super.key, this.text, this.keyName});
   final String? text;
+  final String? keyName;
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +15,7 @@ class OrganismsSuccessDialog extends StatelessWidget {
     return AlertDialog(
       contentPadding: const EdgeInsets.all(spaceSM),
       title: null,
+      key: Key(keyName ?? '-'),
       backgroundColor: whiteColor,
       content: SizedBox(
         width: fullWidth,

@@ -8,6 +8,7 @@ class AtomsInput extends StatelessWidget {
   final dynamic action;
   final dynamic controller;
   final Color? color;
+  final String? keyName;
 
   const AtomsInput(
       {super.key,
@@ -15,7 +16,8 @@ class AtomsInput extends StatelessWidget {
       this.label,
       this.action,
       this.color,
-      this.controller});
+      this.controller,
+      this.keyName});
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,7 @@ class AtomsInput extends StatelessWidget {
                 : const SizedBox(),
             TextFormField(
               controller: controller,
+              key: Key(keyName ?? '-'),
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(
                     vertical: spaceMini, horizontal: spaceSM),

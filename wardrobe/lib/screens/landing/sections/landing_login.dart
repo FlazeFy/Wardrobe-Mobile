@@ -55,11 +55,13 @@ class StateLandingSectionLogin extends State<LandingSectionLogin> {
             type: "input-text",
             label: "Username",
             controller: usernameCtrl,
+            keyName: 'username-input',
           ),
           AtomsInput(
             type: "input-text",
             label: "Password",
             controller: passwordCtrl,
+            keyName: 'password-input',
           ),
           Row(
             children: [
