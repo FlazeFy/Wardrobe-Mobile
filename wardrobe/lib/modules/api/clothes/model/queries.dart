@@ -70,11 +70,11 @@ class LastOutfitClothesModel {
     this.clothesImage,
   });
 
-  factory LastOutfitClothesModel.fromJson(Map<String, dynamic> json) {
+  factory LastOutfitClothesModel.fromJson(Map<String, dynamic> map) {
     return LastOutfitClothesModel(
-      clothesName: json['clothes_name'],
-      clothesType: json['clothes_type'],
-      clothesImage: json['clothes_image'],
+      clothesName: map['clothes_name'],
+      clothesType: map['clothes_type'],
+      clothesImage: map['clothes_image'],
     );
   }
 }

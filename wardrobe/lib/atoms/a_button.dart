@@ -14,12 +14,15 @@ class AtomsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     if (type == 'btn-success' ||
         type == 'btn-primary' ||
-        type == 'btn-danger') {
+        type == 'btn-danger' ||
+        type == 'btn-warning') {
       List<Color> gradientColors = (type == 'btn-success')
           ? [successDarkBG, successBG]
           : (type == 'btn-primary')
               ? [darkInfoBG, infoBG]
-              : [dangerDarkBG, dangerBG];
+              : (type == 'btn-warning')
+                  ? [warningDarkBG, warningBG]
+                  : [dangerDarkBG, dangerBG];
 
       return InkWell(
           onTap: action,

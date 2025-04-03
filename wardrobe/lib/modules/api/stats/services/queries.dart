@@ -330,4 +330,66 @@ class StatsQueriesService {
       }
     }
   }
+
+  Future<List<CalendarModel>> getCalendar(int month, year) async {
+    final prefs = await SharedPreferences.getInstance();
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    String backupKey = "calendar-sess";
+    final token = prefs.getString('auth_key');
+    final header = {
+      'Accept': 'application/json',
+      'Authorization': "Bearer $token",
+    };
+
+    if (connectivityResult == ConnectivityResult.none) {
+      if (prefs.containsKey(backupKey)) {
+        final data = prefs.getString(backupKey);
+        if (data != null) {
+          if (!isOffline) {
+            Get.snackbar("Warning", "Lost connection, all data shown are local",
+                colorText: whiteColor,
+                backgroundColor: darkColor,
+                borderColor: primaryColor,
+                borderWidth: spaceMini / 2.5);
+            isOffline = true;
+          }
+          return queriesCalendarModelFromJson(data);
+        } else {
+          return [];
+        }
+      } else {
+        return [];
+      }
+    } else {
+      final response = await client.get(
+          Uri.parse("$baseUrl/api/v1/stats/calendar/$month/$year"),
+          headers: header);
+      if (response.statusCode == 200) {
+        if (isOffline) {
+          Get.snackbar("Information", "Welcome back, all data are now realtime",
+              colorText: whiteColor,
+              backgroundColor: darkColor,
+              borderColor: primaryColor,
+              borderWidth: spaceMini / 2.5);
+          isOffline = false;
+        }
+        prefs.setString("last-hit-$backupKey", generateTempDataKey());
+        prefs.setString(backupKey, response.body);
+        return queriesCalendarModelFromJson(response.body);
+      } else if (response.statusCode == 401) {
+        return [];
+      } else {
+        if (prefs.containsKey(backupKey)) {
+          final data = prefs.getString(backupKey);
+          if (data != null) {
+            return queriesCalendarModelFromJson(response.body);
+          } else {
+            return [];
+          }
+        } else {
+          return [];
+        }
+      }
+    }
+  }
 }

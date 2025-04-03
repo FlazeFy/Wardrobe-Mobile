@@ -142,3 +142,97 @@ ClothesSummaryModel queriesClothesSummaryModelFromJson(String jsonData) {
   final data = json.decode(jsonData);
   return ClothesSummaryModel.fromJson(data['data']);
 }
+
+class CalendarClothesModel {
+  String id;
+  String clothesName;
+  String clothesCategory;
+  String clothesType;
+  String? clothesImage;
+  String day;
+  final String? typeSchedule; // when combine in calendar screen
+
+  CalendarClothesModel(
+      {required this.id,
+      required this.clothesName,
+      required this.clothesCategory,
+      required this.clothesType,
+      this.clothesImage,
+      required this.day,
+      this.typeSchedule});
+
+  factory CalendarClothesModel.fromJson(Map<String, dynamic> map) {
+    return CalendarClothesModel(
+        id: map['id'],
+        clothesName: map['clothes_name'],
+        clothesCategory: map['clothes_category'],
+        clothesType: map['clothes_type'],
+        clothesImage: map['clothes_image'],
+        day: map['day'] ?? '',
+        typeSchedule: null);
+  }
+  CalendarClothesModel copyWith({String? typeSchedule}) {
+    return CalendarClothesModel(
+      id: id,
+      clothesName: clothesName,
+      clothesCategory: clothesCategory,
+      clothesType: clothesType,
+      clothesImage: clothesImage,
+      day: day,
+      typeSchedule: typeSchedule ?? this.typeSchedule,
+    );
+  }
+}
+
+class CalendarModel {
+  String date;
+  List<CalendarClothesModel>? usedHistory;
+  List<CalendarClothesModel>? weeklySchedule;
+  List<CalendarClothesModel>? washSchedule;
+  List<CalendarClothesModel>? buyedHistory;
+  List<CalendarClothesModel>? addWardrobe;
+
+  CalendarModel(
+      {required this.date,
+      this.usedHistory,
+      this.weeklySchedule,
+      this.washSchedule,
+      this.buyedHistory,
+      this.addWardrobe});
+
+  factory CalendarModel.fromJson(Map<String, dynamic> map) {
+    return CalendarModel(
+        date: map['date'],
+        usedHistory: map['used_history'] != null
+            ? (map['used_history'] as List)
+                .map((item) => CalendarClothesModel.fromJson(item))
+                .toList()
+            : null,
+        weeklySchedule: map['weekly_schedule'] != null
+            ? (map['weekly_schedule'] as List)
+                .map((item) => CalendarClothesModel.fromJson(item))
+                .toList()
+            : null,
+        washSchedule: map['wash_schedule'] != null
+            ? (map['wash_schedule'] as List)
+                .map((item) => CalendarClothesModel.fromJson(item))
+                .toList()
+            : null,
+        buyedHistory: map['buyed_history'] != null
+            ? (map['buyed_history'] as List)
+                .map((item) => CalendarClothesModel.fromJson(item))
+                .toList()
+            : null,
+        addWardrobe: map['add_wardrobe'] != null
+            ? (map['add_wardrobe'] as List)
+                .map((item) => CalendarClothesModel.fromJson(item))
+                .toList()
+            : null);
+  }
+}
+
+List<CalendarModel> queriesCalendarModelFromJson(String jsonData) {
+  final data = json.decode(jsonData);
+  return List<CalendarModel>.from(
+      data['data'].map((item) => CalendarModel.fromJson(item)));
+}
