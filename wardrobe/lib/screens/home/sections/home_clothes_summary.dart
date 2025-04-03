@@ -57,7 +57,7 @@ class _HomeSectionClothesSummaryState extends State<HomeSectionClothesSummary> {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [darkInfoBG, infoBG],
+          colors: [infoBG, primaryLightBG],
         ),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [

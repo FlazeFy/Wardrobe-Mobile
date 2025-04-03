@@ -39,7 +39,7 @@ class StateLandingSectionLogin extends State<LandingSectionLogin> {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [darkInfoBG, infoBG],
+          colors: [infoBG, primaryLightBG],
         ),
       ),
       child: Column(

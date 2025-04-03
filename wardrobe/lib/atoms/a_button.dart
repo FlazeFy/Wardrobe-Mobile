@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 
 class AtomsButton extends StatelessWidget {
@@ -23,7 +22,7 @@ class AtomsButton extends StatelessWidget {
               : [dangerDarkBG, dangerBG];
 
       return InkWell(
-          onTap: this.action,
+          onTap: action,
           child: Container(
             padding: const EdgeInsets.symmetric(
                 vertical: spaceSM, horizontal: spaceMD),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:wardrobe/atoms/a_input.dart';
 import 'package:wardrobe/atoms/a_text.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/modules/api/user/model/queries.dart';
 import 'package:wardrobe/modules/api/user/service/queries.dart';
+import 'package:wardrobe/screens/profile/sections/profile_props_profile.dart';
 
 class ProfileSectionEditForm extends StatefulWidget {
   const ProfileSectionEditForm({super.key});
@@ -55,38 +55,44 @@ class _ProfileSectionEditFormState extends State<ProfileSectionEditForm> {
     emailCtrl.text = data != null ? data.email : "";
     telegramUserIdCtrl.text = data != null ? data.telegramUserId ?? "" : "";
 
-    return Container(
-      decoration: const BoxDecoration(
-          color: greyColor,
-          borderRadius: BorderRadius.all(Radius.circular(roundedLG))),
-      padding: const EdgeInsets.all(spaceXMD),
-      margin: const EdgeInsets.only(bottom: spaceMD),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const AtomsText(
-            type: "content-title",
-            text: "Edit Profile",
-            color: blackColor,
-          ),
-          AtomsInput(
+    return Column(children: [
+      ProfileSectionPropsProfile(
+          createdAt: data != null ? data.createdAt : "",
+          updatedAt: data?.updatedAt),
+      const SizedBox(height: spaceLG),
+      Container(
+        decoration: const BoxDecoration(
+            color: greyColor,
+            borderRadius: BorderRadius.all(Radius.circular(roundedLG))),
+        padding: const EdgeInsets.all(spaceXMD),
+        margin: const EdgeInsets.only(bottom: spaceMD),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const AtomsText(
+              type: "content-title",
+              text: "Edit Profile",
+              color: blackColor,
+            ),
+            AtomsInput(
+                type: "input-text",
+                label: "Username",
+                color: darkColor,
+                controller: usernameCtrl),
+            AtomsInput(
+                type: "input-text",
+                label: "Email",
+                color: darkColor,
+                controller: emailCtrl),
+            AtomsInput(
               type: "input-text",
-              label: "Username",
+              label: "Telegram User ID",
               color: darkColor,
-              controller: usernameCtrl),
-          AtomsInput(
-              type: "input-text",
-              label: "Email",
-              color: darkColor,
-              controller: emailCtrl),
-          AtomsInput(
-            type: "input-text",
-            label: "Telegram User ID",
-            color: darkColor,
-            controller: telegramUserIdCtrl,
-          ),
-        ],
-      ),
-    );
+              controller: telegramUserIdCtrl,
+            ),
+          ],
+        ),
+      )
+    ]);
   }
 }

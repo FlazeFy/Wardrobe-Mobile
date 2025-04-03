@@ -1,4 +1,3 @@
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 
 String getCleanTitleFromCtx(String val) {
@@ -98,4 +97,16 @@ String formatCurrency(double val) {
   }
 
   return "Rp. $val";
+}
+
+int getUTCHourOffset() {
+  return DateTime.now().timeZoneOffset.inHours;
+}
+
+String convertDatetimeBasedLocal(String datetime) {
+  DateTime result = DateTime.parse(datetime);
+  int offsetHours = getUTCHourOffset();
+  result = result.add(Duration(hours: offsetHours));
+
+  return DateFormat("yyyy-MM-dd HH:mm").format(result);
 }

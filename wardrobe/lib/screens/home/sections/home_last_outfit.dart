@@ -6,6 +6,7 @@ import 'package:wardrobe/atoms/a_text.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/modules/api/clothes/model/queries.dart';
 import 'package:wardrobe/modules/api/clothes/service/queries.dart';
+import 'package:wardrobe/modules/helpers/converter.dart';
 
 class HomeSectionLastOutfit extends StatefulWidget {
   const HomeSectionLastOutfit({super.key});
@@ -100,7 +101,8 @@ class _HomeSectionLastOutfitState extends State<HomeSectionLastOutfit> {
         ),
         AtomsText(
             type: "content-sub-title",
-            text: "Set at ${data != null ? data.lastUsed : "-"}",
+            text:
+                "Set at ${data != null ? convertDatetimeBasedLocal(data.lastUsed) : "-"}",
             color: darkColor),
         const Row(
           children: [
