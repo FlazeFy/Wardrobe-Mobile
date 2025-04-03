@@ -7,12 +7,14 @@ class AtomsInput extends StatelessWidget {
   final String? label;
   final dynamic action;
   final dynamic controller;
+  final Color? color;
 
   const AtomsInput(
       {super.key,
       required this.type,
       this.label,
       this.action,
+      this.color,
       this.controller});
 
   @override
@@ -24,7 +26,9 @@ class AtomsInput extends StatelessWidget {
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             label != null
                 ? AtomsText(
-                    type: "input-label", text: "$label", color: whiteColor)
+                    type: "input-label",
+                    text: "$label",
+                    color: color ?? whiteColor)
                 : const SizedBox(),
             TextFormField(
               controller: controller,

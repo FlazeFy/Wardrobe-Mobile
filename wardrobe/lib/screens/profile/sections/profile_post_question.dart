@@ -43,7 +43,8 @@ class StateProfileSectionPostQuestion
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const AtomsText(type: "content-title", text: "Ask A Question"),
+          const AtomsText(
+              type: "content-title", text: "Ask A Question", color: blackColor),
           const AtomsText(
               type: "content-sub-title",
               text:

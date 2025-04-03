@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:wardrobe/atoms/a_button.dart';
 import 'package:wardrobe/design_tokens/style.dart';
+import 'package:wardrobe/screens/profile/sections/profile_edit_form.dart';
 import 'package:wardrobe/screens/profile/sections/profile_post_question.dart';
 import 'package:wardrobe/screens/profile/sections/profile_sign_out.dart';
 import 'package:wardrobe/screens/sync/index.dart';
@@ -36,6 +37,7 @@ class StateProfilePageState extends State<ProfilePage> {
             const ProfileSectionSignOut()
           ],
         ),
+        const ProfileSectionEditForm(),
         const SizedBox(height: spaceMD),
         const ProfileSectionPostQuestion()
       ],
