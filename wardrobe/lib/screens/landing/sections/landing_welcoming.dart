@@ -84,6 +84,7 @@ class _LandingSectionWelcomingState extends State<LandingSectionWelcoming> {
                     text: "${data?.totalUser} +",
                     color: blackColor,
                     align: TextAlign.center,
+                    key: const Key("total-user-text"),
                     marginBottom: spaceMini),
                 const AtomsText(
                     type: "content-title",
@@ -96,6 +97,7 @@ class _LandingSectionWelcomingState extends State<LandingSectionWelcoming> {
                     text: "${data?.totalSchedule} +",
                     color: blackColor,
                     align: TextAlign.center,
+                    key: const Key("total-schedule-text"),
                     marginBottom: spaceMini),
                 const AtomsText(
                     type: "content-title",
@@ -112,6 +114,7 @@ class _LandingSectionWelcomingState extends State<LandingSectionWelcoming> {
                     text: "${data?.totalOutfitDecision} +",
                     color: blackColor,
                     align: TextAlign.center,
+                    key: const Key("total-outfit-text"),
                     marginBottom: spaceMini),
                 const AtomsText(
                     type: "content-title",
@@ -124,6 +127,7 @@ class _LandingSectionWelcomingState extends State<LandingSectionWelcoming> {
                     text: "${data?.totalClothes} +",
                     color: blackColor,
                     align: TextAlign.center,
+                    key: const Key("total-clothes-text"),
                     marginBottom: spaceMini),
                 const AtomsText(
                     type: "content-title",
