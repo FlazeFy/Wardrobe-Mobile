@@ -121,9 +121,7 @@ class _HomeSectionClothesSummaryState extends State<HomeSectionClothesSummary> {
                   AtomsText(
                       type: "content-title",
                       text: data != null
-                          ? data.avgPrice == null
-                              ? "0"
-                              : formatCurrency(data.maxPrice.toDouble())
+                          ? formatCurrency(data.maxPrice.toDouble())
                           : "...",
                       color: blackColor),
                   const SizedBox(width: spaceXXSM),
@@ -138,9 +136,7 @@ class _HomeSectionClothesSummaryState extends State<HomeSectionClothesSummary> {
                   AtomsText(
                       type: "content-title",
                       text: data != null
-                          ? data.avgPrice == null
-                              ? "0"
-                              : formatCurrency(data.avgPrice.toDouble())
+                          ? formatCurrency(data.avgPrice.toDouble())
                           : "...",
                       color: blackColor),
                   const SizedBox(width: spaceXXSM),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wardrobe/design_tokens/style.dart';
+import 'package:wardrobe/screens/landing/sections/landing_feedback.dart';
 import 'package:wardrobe/screens/landing/sections/landing_login.dart';
 import 'package:wardrobe/screens/landing/sections/landing_welcoming.dart';
 
@@ -14,18 +15,26 @@ class StateLoginPageState extends State<LoginPage> {
   final TextEditingController usernameCtrl = TextEditingController();
   final TextEditingController passwordCtrl = TextEditingController();
 
+  Widget sectionDivider() {
+    return const Column(children: [
+      SizedBox(height: spaceJumbo),
+      Divider(color: darkColor),
+      SizedBox(height: spaceSM),
+    ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: ListView(
       padding:
           const EdgeInsets.symmetric(horizontal: spaceMD, vertical: spaceJumbo),
-      children: const [
-        LandingSectionLogin(),
-        SizedBox(height: spaceJumbo),
-        Divider(color: darkColor),
-        SizedBox(height: spaceSM),
-        LandingSectionWelcoming()
+      children: [
+        const LandingSectionLogin(),
+        sectionDivider(),
+        const LandingSectionWelcoming(),
+        sectionDivider(),
+        const LandingSectionFeedback()
       ],
     ));
   }

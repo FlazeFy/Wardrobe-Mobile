@@ -128,7 +128,7 @@ class StateCalendarSectionSchedule extends State<CalendarSectionSchedule> {
                             height: 150,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
-                              itemCount: allSchedules.length ?? 0,
+                              itemCount: allSchedules.length,
                               itemBuilder: (context, index) {
                                 final item = allSchedules[index];
                                 return Container(
@@ -152,9 +152,9 @@ class StateCalendarSectionSchedule extends State<CalendarSectionSchedule> {
                                       ),
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(10),
-                                        child: item?.clothesImage != null
+                                        child: item.clothesImage != null
                                             ? Image.network(
-                                                item!.clothesImage!,
+                                                item.clothesImage!,
                                                 width: 80,
                                                 height: 80,
                                                 fit: BoxFit.cover,
@@ -169,7 +169,7 @@ class StateCalendarSectionSchedule extends State<CalendarSectionSchedule> {
                                       const SizedBox(height: spaceMini),
                                       AtomsText(
                                         type: "content-body",
-                                        text: item?.clothesName ?? "-",
+                                        text: item.clothesName,
                                         color: blackColor,
                                         align: TextAlign.center,
                                       )

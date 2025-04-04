@@ -133,7 +133,7 @@ class MyAppState extends State<MyApp> {
   getToken() async {
     token = await FirebaseMessaging.instance.getToken();
 
-    print(token);
+    // print(token);
     FCMModel data = FCMModel(firebaseFcm: "$token");
     try {
       var response = await notificationCommandsService.updateFcm(data);

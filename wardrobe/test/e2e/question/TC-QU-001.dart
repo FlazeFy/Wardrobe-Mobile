@@ -3,9 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:wardrobe/atoms/a_button.dart';
-import 'package:wardrobe/atoms/a_input.dart';
 import 'package:wardrobe/organisms/o_bottom_bar.dart';
-import 'package:wardrobe/organisms/o_success_dialog.dart';
 import 'package:wardrobe/screens/profile/index.dart';
 
 void main() {
