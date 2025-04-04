@@ -87,7 +87,8 @@ class _LandingSectionFeedbackState extends State<LandingSectionFeedback> {
               return MoleculesFeedbackBox(item: item);
             },
           ),
-        )
+        ),
+        const SizedBox(height: spaceXLG)
       ],
     );
   }

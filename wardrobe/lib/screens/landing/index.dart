@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wardrobe/design_tokens/style.dart';
+import 'package:wardrobe/screens/landing/sections/landing_features.dart';
 import 'package:wardrobe/screens/landing/sections/landing_feedback.dart';
 import 'package:wardrobe/screens/landing/sections/landing_login.dart';
 import 'package:wardrobe/screens/landing/sections/landing_welcoming.dart';
@@ -19,7 +20,7 @@ class StateLoginPageState extends State<LoginPage> {
     return const Column(children: [
       SizedBox(height: spaceJumbo),
       Divider(color: darkColor),
-      SizedBox(height: spaceSM),
+      SizedBox(height: spaceXLG),
     ]);
   }
 
@@ -34,7 +35,9 @@ class StateLoginPageState extends State<LoginPage> {
         sectionDivider(),
         const LandingSectionWelcoming(),
         sectionDivider(),
-        const LandingSectionFeedback()
+        const LandingSectionFeedback(),
+        sectionDivider(),
+        const LandingSectionFeatures()
       ],
     ));
   }
