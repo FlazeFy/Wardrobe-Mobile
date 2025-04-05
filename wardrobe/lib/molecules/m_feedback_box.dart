@@ -3,7 +3,7 @@ import 'package:wardrobe/atoms/a_text.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 
 class MoleculesFeedbackBox extends StatelessWidget {
-  final dynamic? item;
+  final dynamic item;
 
   const MoleculesFeedbackBox({super.key, required this.item});
 

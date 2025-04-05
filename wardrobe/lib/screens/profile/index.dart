@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:wardrobe/atoms/a_button.dart';
 import 'package:wardrobe/design_tokens/style.dart';
+import 'package:wardrobe/screens/profile/about/index.dart';
 import 'package:wardrobe/screens/profile/export/index.dart';
 import 'package:wardrobe/screens/profile/feedback/index.dart';
 import 'package:wardrobe/screens/profile/sections/profile_all_history.dart';
@@ -68,7 +69,9 @@ class StateProfilePageState extends State<ProfilePage> {
                 text: "About Us",
                 icon: const FaIcon(FontAwesomeIcons.circleInfo,
                     color: whiteColor, size: textMD),
-                action: () {},
+                action: () {
+                  Get.to(const AboutUsPage());
+                },
               ),
             ],
           ),

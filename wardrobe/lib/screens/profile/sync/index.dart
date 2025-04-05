@@ -4,6 +4,7 @@ import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/molecules/m_top_bar.dart';
 import 'package:wardrobe/screens/profile/sync/sections/sync_all_feedback.dart';
 import 'package:wardrobe/screens/profile/sync/sections/sync_all_question.dart';
+import 'package:wardrobe/screens/profile/sync/sections/sync_post_feedback.dart';
 import 'package:wardrobe/screens/profile/sync/sections/sync_post_question.dart';
 
 class SyncPage extends StatefulWidget {
@@ -67,6 +68,7 @@ class StateSyncPageState extends State<SyncPage> {
                           AtomsText(
                               type: "content-title", text: "All Feedback"),
                           Spacer(),
+                          SyncSectionPostFeedback(),
                         ],
                       ),
                       SizedBox(height: spaceMD),

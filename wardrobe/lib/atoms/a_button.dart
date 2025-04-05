@@ -73,6 +73,32 @@ class AtomsButton extends StatelessWidget {
               )
             : icon,
       );
+    } else if (type == 'btn-icon') {
+      return InkWell(
+        onTap: action,
+        child: Container(
+          width: 46,
+          height: 46,
+          padding: const EdgeInsets.all(spaceSM - 1),
+          decoration: BoxDecoration(
+            color: infoBG,
+            border: Border.all(width: spaceMini / 2, color: whiteColor),
+            borderRadius: BorderRadius.circular(roundedCircle),
+            boxShadow: [
+              BoxShadow(
+                color: shadowColor.withOpacity(0.35),
+                blurRadius: spaceLG,
+                spreadRadius: 0.0,
+                offset: const Offset(
+                  spaceMini,
+                  spaceMini,
+                ),
+              )
+            ],
+          ),
+          child: icon,
+        ),
+      );
     } else {
       return const Text("Default Title");
     }
