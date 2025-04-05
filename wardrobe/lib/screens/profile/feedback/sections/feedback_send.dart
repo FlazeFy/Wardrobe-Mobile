@@ -5,10 +5,8 @@ import 'package:wardrobe/atoms/a_button.dart';
 import 'package:wardrobe/atoms/a_input.dart';
 import 'package:wardrobe/atoms/a_text.dart';
 import 'package:wardrobe/design_tokens/style.dart';
-import 'package:wardrobe/modules/api/auth/service/command.dart';
 import 'package:wardrobe/modules/api/feedback/model/commands.dart';
 import 'package:wardrobe/modules/api/feedback/service/commands.dart';
-import 'package:wardrobe/organisms/o_bottom_bar.dart';
 import 'package:wardrobe/screens/profile/feedback/index.dart';
 
 class FeedbackSectionSend extends StatefulWidget {

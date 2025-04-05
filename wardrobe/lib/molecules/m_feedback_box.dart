@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wardrobe/atoms/a_text.dart';
 import 'package:wardrobe/design_tokens/style.dart';
-import 'package:wardrobe/modules/api/feedback/model/queries.dart';
 
 class MoleculesFeedbackBox extends StatelessWidget {
-  final TopFeedbackModel? item;
+  final dynamic? item;
 
   const MoleculesFeedbackBox({super.key, required this.item});
 
@@ -12,7 +11,7 @@ class MoleculesFeedbackBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.all(spaceSM),
-        margin: const EdgeInsets.only(right: spaceSM),
+        margin: const EdgeInsets.only(right: spaceSM, bottom: spaceSM),
         decoration: BoxDecoration(
             border: Border.all(color: darkColor, width: 1),
             borderRadius: const BorderRadius.all(Radius.circular(roundedMD))),
