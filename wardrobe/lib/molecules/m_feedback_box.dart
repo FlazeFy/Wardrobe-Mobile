@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wardrobe/atoms/a_text.dart';
 import 'package:wardrobe/design_tokens/style.dart';
-import 'package:wardrobe/modules/api/question/model/queries.dart';
+import 'package:wardrobe/modules/api/feedback/model/queries.dart';
 
 class MoleculesFeedbackBox extends StatelessWidget {
   final TopFeedbackModel? item;

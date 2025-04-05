@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:wardrobe/atoms/a_button.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/screens/profile/export/index.dart';
+import 'package:wardrobe/screens/profile/feedback/index.dart';
 import 'package:wardrobe/screens/profile/sections/profile_all_history.dart';
 import 'package:wardrobe/screens/profile/sections/profile_edit_form.dart';
 import 'package:wardrobe/screens/profile/sections/profile_post_question.dart';
@@ -57,7 +58,9 @@ class StateProfilePageState extends State<ProfilePage> {
                 text: "Feedback",
                 icon: const FaIcon(FontAwesomeIcons.solidComment,
                     color: whiteColor, size: textMD),
-                action: () {},
+                action: () {
+                  Get.to(const FeedbackPage());
+                },
               ),
               const SizedBox(width: spaceMini),
               AtomsButton(

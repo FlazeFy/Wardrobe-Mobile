@@ -54,6 +54,7 @@ class StateProfileSectionPostQuestion
             label: null,
             controller: questionCtrl,
             keyName: 'question-body-input',
+            lines: 4,
           ),
           Row(
             children: [

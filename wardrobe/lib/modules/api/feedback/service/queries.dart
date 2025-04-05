@@ -5,10 +5,10 @@ import 'package:http/http.dart' show Client;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wardrobe/design_tokens/global.dart';
 import 'package:wardrobe/design_tokens/style.dart';
-import 'package:wardrobe/modules/api/question/model/queries.dart';
+import 'package:wardrobe/modules/api/feedback/model/queries.dart';
 import 'package:wardrobe/modules/helpers/generator.dart';
 
-class QuestionQueriesService {
+class FeedbackQueriesService {
   final String emuUrl = "http://10.0.2.2:8000";
   DateTime now = DateTime.now();
   Client client = Client();

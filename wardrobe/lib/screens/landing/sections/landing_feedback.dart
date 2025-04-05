@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wardrobe/atoms/a_text.dart';
 import 'package:wardrobe/design_tokens/style.dart';
-import 'package:wardrobe/modules/api/question/model/queries.dart';
-import 'package:wardrobe/modules/api/question/service/queries.dart';
+import 'package:wardrobe/modules/api/feedback/model/queries.dart';
+import 'package:wardrobe/modules/api/feedback/service/queries.dart';
 import 'package:wardrobe/molecules/m_feedback_box.dart';
 
 class LandingSectionFeedback extends StatefulWidget {
@@ -13,12 +13,12 @@ class LandingSectionFeedback extends StatefulWidget {
 }
 
 class _LandingSectionFeedbackState extends State<LandingSectionFeedback> {
-  QuestionQueriesService? apiService;
+  FeedbackQueriesService? apiService;
 
   @override
   void initState() {
     super.initState();
-    apiService = QuestionQueriesService();
+    apiService = FeedbackQueriesService();
   }
 
   @override
