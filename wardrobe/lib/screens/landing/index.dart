@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/screens/landing/sections/landing_features.dart';
 import 'package:wardrobe/screens/landing/sections/landing_feedback.dart';
+import 'package:wardrobe/screens/landing/sections/landing_footer.dart';
 import 'package:wardrobe/screens/landing/sections/landing_login.dart';
+import 'package:wardrobe/screens/landing/sections/landing_platform.dart';
 import 'package:wardrobe/screens/landing/sections/landing_welcoming.dart';
 
 class LoginPage extends StatefulWidget {
@@ -37,7 +39,11 @@ class StateLoginPageState extends State<LoginPage> {
         sectionDivider(),
         const LandingSectionFeedback(),
         sectionDivider(),
-        const LandingSectionFeatures()
+        const LandingSectionFeatures(),
+        sectionDivider(),
+        const LandingSectionPlatform(),
+        sectionDivider(),
+        const LandingSectionFooter(),
       ],
     ));
   }
