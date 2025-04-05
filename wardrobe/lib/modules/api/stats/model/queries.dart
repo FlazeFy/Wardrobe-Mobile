@@ -263,3 +263,36 @@ WelcomeStatsModel welcomeStatsModelFromJson(String jsonData) {
   final data = json.decode(jsonData);
   return WelcomeStatsModel.fromJson(data['data']);
 }
+
+class WashSummaryModel {
+  String lastWashClothes;
+  String lastWashDate;
+  int totalWash;
+  String mostWash;
+  int avgWashDurPerClothes;
+  int avgWashPerWeek;
+
+  WashSummaryModel(
+      {required this.lastWashClothes,
+      required this.lastWashDate,
+      required this.totalWash,
+      required this.mostWash,
+      required this.avgWashDurPerClothes,
+      required this.avgWashPerWeek});
+
+  factory WashSummaryModel.fromJson(Map<String, dynamic> map) {
+    return WashSummaryModel(
+      lastWashClothes: map["last_wash_clothes"],
+      lastWashDate: map["last_wash_date"],
+      totalWash: map["total_wash"],
+      mostWash: map["most_wash"],
+      avgWashDurPerClothes: map["avg_wash_dur_per_clothes"],
+      avgWashPerWeek: map["avg_wash_per_week"],
+    );
+  }
+}
+
+WashSummaryModel washSummaryModelFromJson(String jsonData) {
+  final data = json.decode(jsonData);
+  return WashSummaryModel.fromJson(data['data']);
+}

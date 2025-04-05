@@ -73,7 +73,7 @@ class AtomsText extends StatelessWidget {
                       fontWeight: FontWeight.w800)));
     } else if (type == 'content-title') {
       return Container(
-          margin: const EdgeInsets.only(bottom: spaceSM),
+          margin: EdgeInsets.only(bottom: marginBottom ?? spaceSM),
           child: Text(text,
               textAlign: align ?? TextAlign.start,
               style: TextStyle(
