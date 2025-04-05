@@ -52,6 +52,8 @@ dependencies:
   art_sweetalert: ^0.0.5
   permission_handler: ^11.0.1
   open_file: ^3.3.2
+  syncfusion_flutter_datagrid: ^20.4.54
+  excel: ^4.0.6
 
 dev_dependencies:
   flutter_test:

@@ -4,7 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' show Client;
-import 'package:open_file/open_file.dart';
+// import 'package:open_file/open_file.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wardrobe/design_tokens/global.dart';
 import 'package:wardrobe/design_tokens/style.dart';
@@ -12,6 +12,7 @@ import 'package:wardrobe/modules/helpers/converter.dart';
 import 'package:wardrobe/screens/landing/index.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:wardrobe/screens/profile/export/view_excel/index.dart';
 
 class ExportQueriesService {
   final String emuUrl = "http://10.0.2.2:8000";
@@ -77,13 +78,15 @@ class ExportQueriesService {
         final file = File('$downloadPath/$filename');
         await file.writeAsBytes(bytes);
 
-        Get.snackbar("Success!", "${getCleanTitleFromCtx(ctx)} data downloaded",
+        // await OpenFile.open(file.path);
+        Get.to(() => ViewExportedExcelPage(filePath: file.path));
+
+        Get.snackbar("Success!",
+            "${getCleanTitleFromCtx(ctx)} data downloaded and store in your storage",
             colorText: whiteColor,
             backgroundColor: darkColor,
             borderColor: primaryColor,
             borderWidth: spaceMini / 2.5);
-
-        await OpenFile.open(file.path);
       } else {
         if (response.statusCode == 401) {
           Get.to(() => const LoginPage());
