@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/molecules/m_top_bar.dart';
 import 'package:wardrobe/screens/clothes/generated/sections/generated_outfit_monthly_total_used.dart';
+import 'package:wardrobe/screens/clothes/generated/sections/generated_outfit_most_used.dart';
 
 class GeneratedPage extends StatefulWidget {
   const GeneratedPage({Key? key}) : super(key: key);
@@ -19,7 +20,10 @@ class StateGeneratedPageState extends State<GeneratedPage> {
             child: MoleculesTopBar(title: "Generated Outfit Page")),
         body: ListView(
           padding: const EdgeInsets.all(spaceMD),
-          children: const [GeneratedOutfitSectionMonthlyTotalUsed()],
+          children: const [
+            GeneratedOutfitSectionMostUsed(),
+            GeneratedOutfitSectionMonthlyTotalUsed()
+          ],
         ));
   }
 }
