@@ -161,3 +161,74 @@ List<ClothesDeletedModel> clothesDeletedModelFromJson(String jsonData) {
   return List<ClothesDeletedModel>.from(
       data['data']['data'].map((item) => ClothesDeletedModel.fromJson(item)));
 }
+
+class WashCheckpointModel {
+  String id;
+  String checkpointName;
+  bool isFinished;
+
+  WashCheckpointModel({
+    required this.id,
+    required this.checkpointName,
+    required this.isFinished,
+  });
+
+  factory WashCheckpointModel.fromJson(Map<String, dynamic> map) {
+    return WashCheckpointModel(
+      id: map['id'],
+      checkpointName: map['checkpoint_name'],
+      isFinished: map['is_finished'],
+    );
+  }
+}
+
+class WashHistoryModel {
+  String id;
+  String clothesName;
+  String washType;
+  String? washNote;
+  List<WashCheckpointModel> washCheckpoint;
+  String? clothesMerk;
+  String clothesMadeFrom;
+  String clothesColor;
+  String clothesType;
+  String washAt;
+  String? finishedAt;
+
+  WashHistoryModel(
+      {required this.id,
+      required this.clothesName,
+      required this.washType,
+      this.washNote,
+      required this.washCheckpoint,
+      this.clothesMerk,
+      required this.clothesMadeFrom,
+      required this.clothesColor,
+      required this.clothesType,
+      required this.washAt,
+      this.finishedAt});
+
+  factory WashHistoryModel.fromJson(Map<String, dynamic> map) {
+    return WashHistoryModel(
+      id: map['id'],
+      clothesName: map['clothes_name'],
+      washType: map['wash_type'],
+      washNote: map['wash_note'],
+      washCheckpoint: (map['wash_checkpoint'] as List)
+          .map((item) => WashCheckpointModel.fromJson(item))
+          .toList(),
+      clothesMerk: map['clothes_name'],
+      clothesMadeFrom: map['clothes_made_from'],
+      clothesColor: map['clothes_color'],
+      clothesType: map['clothes_type'],
+      washAt: map['wash_at'],
+      finishedAt: map['finished_at'],
+    );
+  }
+}
+
+List<WashHistoryModel> washHistoryModelFromJson(String jsonData) {
+  final data = json.decode(jsonData);
+  return List<WashHistoryModel>.from(
+      data['data']['data'].map((item) => WashHistoryModel.fromJson(item)));
+}

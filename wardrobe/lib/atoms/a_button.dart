@@ -7,9 +7,15 @@ class AtomsButton extends StatelessWidget {
   final String? text;
   final dynamic action;
   final dynamic icon;
+  final Color? color;
 
   const AtomsButton(
-      {super.key, required this.type, this.text, this.action, this.icon});
+      {super.key,
+      required this.type,
+      this.text,
+      this.action,
+      this.icon,
+      this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +65,8 @@ class AtomsButton extends StatelessWidget {
       return Container(
         padding:
             const EdgeInsets.symmetric(vertical: spaceXSM, horizontal: spaceSM),
-        decoration: const BoxDecoration(
-          color: darkInfoBG,
+        decoration: BoxDecoration(
+          color: color ?? darkInfoBG,
           borderRadius: BorderRadius.all(Radius.circular(roundedJumbo)),
         ),
         child: text != null
@@ -79,9 +85,9 @@ class AtomsButton extends StatelessWidget {
         child: Container(
           width: 46,
           height: 46,
-          padding: const EdgeInsets.all(spaceSM - 1),
+          padding: const EdgeInsets.all(spaceMD - 1),
           decoration: BoxDecoration(
-            color: infoBG,
+            color: color ?? infoBG,
             border: Border.all(width: spaceMini / 2, color: whiteColor),
             borderRadius: BorderRadius.circular(roundedCircle),
             boxShadow: [

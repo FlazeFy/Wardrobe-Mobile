@@ -69,6 +69,7 @@ class _AboutSectionCreatorState extends State<AboutSectionCreator> {
                     icon: const FaIcon(
                       FontAwesomeIcons.instagram,
                       color: whiteColor,
+                      size: textXLG,
                     )),
                 const SizedBox(width: spaceMD),
                 AtomsButton(
@@ -86,6 +87,7 @@ class _AboutSectionCreatorState extends State<AboutSectionCreator> {
                     icon: const FaIcon(
                       FontAwesomeIcons.linkedin,
                       color: whiteColor,
+                      size: textXLG,
                     )),
                 const SizedBox(width: spaceMD),
                 AtomsButton(
@@ -102,6 +104,7 @@ class _AboutSectionCreatorState extends State<AboutSectionCreator> {
                     icon: const FaIcon(
                       FontAwesomeIcons.github,
                       color: whiteColor,
+                      size: textXLG,
                     )),
                 const SizedBox(width: spaceMD),
                 AtomsButton(
@@ -118,6 +121,7 @@ class _AboutSectionCreatorState extends State<AboutSectionCreator> {
                     icon: const FaIcon(
                       FontAwesomeIcons.envelope,
                       color: whiteColor,
+                      size: textXLG,
                     ))
               ],
             )
