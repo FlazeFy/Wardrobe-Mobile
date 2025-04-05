@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wardrobe/design_tokens/style.dart';
+import 'package:wardrobe/modules/helpers/converter.dart';
 
 class AtomsButton extends StatelessWidget {
   final String type;
@@ -48,7 +49,7 @@ class AtomsButton extends StatelessWidget {
                       margin: const EdgeInsets.only(right: spaceXXSM),
                       child: icon),
                 ],
-                Text(text ?? '',
+                Text(ucFirstWord(text ?? ''),
                     style: const TextStyle(
                         color: whiteColor, fontWeight: FontWeight.w500)),
               ],

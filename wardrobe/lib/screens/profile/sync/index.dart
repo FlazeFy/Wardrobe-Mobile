@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:wardrobe/atoms/a_text.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/molecules/m_top_bar.dart';
-import 'package:wardrobe/screens/sync/sections/sync_all_question.dart';
-import 'package:wardrobe/screens/sync/sections/sync_post_question.dart';
+import 'package:wardrobe/screens/profile/sync/sections/sync_all_question.dart';
+import 'package:wardrobe/screens/profile/sync/sections/sync_post_question.dart';
 
 class SyncPage extends StatefulWidget {
   const SyncPage({Key? key}) : super(key: key);

@@ -110,3 +110,24 @@ String convertDatetimeBasedLocal(String datetime) {
 
   return DateFormat("yyyy-MM-dd HH:mm").format(result);
 }
+
+String ucFirstChar(String val) {
+  try {
+    return val[0].toUpperCase() + val.substring(1);
+  } catch (e) {
+    rethrow;
+  }
+}
+
+String ucFirstWord(String val) {
+  try {
+    final words = val.split(' ');
+    final caps = words.map((wd) {
+      if (wd.isEmpty) return wd;
+      return wd[0].toUpperCase() + wd.substring(1);
+    }).toList();
+    return caps.join(' ');
+  } catch (e) {
+    rethrow;
+  }
+}
