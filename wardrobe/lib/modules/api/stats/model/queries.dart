@@ -15,6 +15,14 @@ class TwoLineData {
   final String text;
 }
 
+class SingleLineData {
+  SingleLineData(this.xData, this.yData, [this.text = ""]);
+
+  final String xData;
+  final num yData;
+  final String text;
+}
+
 class QueriesPieChartModel {
   String ctx;
   int total;

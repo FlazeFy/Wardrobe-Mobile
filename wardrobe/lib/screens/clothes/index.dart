@@ -5,6 +5,7 @@ import 'package:wardrobe/atoms/a_button.dart';
 import 'package:wardrobe/atoms/a_text.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/molecules/m_menu_button.dart';
+import 'package:wardrobe/screens/clothes/generated/index.dart';
 import 'package:wardrobe/screens/clothes/sections/clothes_all_header.dart';
 import 'package:wardrobe/screens/clothes/trash/index.dart';
 import 'package:wardrobe/screens/clothes/wash/index.dart';
@@ -38,6 +39,14 @@ class StateClothesPageState extends State<ClothesPage> {
                   //
                 },
               ),
+              MoleculesMenuButton(
+                  title: "Generated Outfit",
+                  desc:
+                      "Stay Calm, We Can Set What You Will Wear Today, Tommorow, or Whatever Day You Want",
+                  urlImage: "assets/images/generate_outfit.jpg",
+                  action: () {
+                    Get.to(const GeneratedPage());
+                  }),
               MoleculesMenuButton(
                   title: "Wash History",
                   desc:

@@ -21,7 +21,7 @@ class MoleculesMenuButton extends StatelessWidget {
         onTap: action,
         child: Container(
           margin: const EdgeInsets.only(right: spaceMD),
-          width: 220,
+          width: 240,
           child: Stack(
             children: [
               Positioned.fill(

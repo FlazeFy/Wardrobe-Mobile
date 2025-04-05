@@ -67,7 +67,7 @@ class AtomsButton extends StatelessWidget {
             const EdgeInsets.symmetric(vertical: spaceXSM, horizontal: spaceSM),
         decoration: BoxDecoration(
           color: color ?? darkInfoBG,
-          borderRadius: BorderRadius.all(Radius.circular(roundedJumbo)),
+          borderRadius: const BorderRadius.all(Radius.circular(roundedJumbo)),
         ),
         child: text != null
             ? Text(
