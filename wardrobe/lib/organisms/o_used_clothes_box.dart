@@ -6,6 +6,7 @@ import 'package:wardrobe/atoms/a_text.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/modules/api/clothes/model/queries.dart';
 import 'package:wardrobe/modules/helpers/converter.dart';
+import 'package:wardrobe/screens/clothes/used/sections/used_hard_delete_used_history.dart';
 
 class OrganismsUsedClothesBox extends StatelessWidget {
   final UsedHistoryModel item;
@@ -73,15 +74,7 @@ class OrganismsUsedClothesBox extends StatelessWidget {
                   ],
                 ),
                 const Spacer(),
-                const AtomsButton(
-                  type: "btn-icon",
-                  color: dangerBG,
-                  icon: FaIcon(
-                    FontAwesomeIcons.trash,
-                    color: whiteColor,
-                    size: textXLG,
-                  ),
-                )
+                UsedSectionHardDeleteUsedHistory(id: item.id)
               ],
             )
           ],
