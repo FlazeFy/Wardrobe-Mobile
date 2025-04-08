@@ -8,6 +8,7 @@ import 'package:wardrobe/molecules/m_menu_button.dart';
 import 'package:wardrobe/screens/clothes/generated/index.dart';
 import 'package:wardrobe/screens/clothes/sections/clothes_all_header.dart';
 import 'package:wardrobe/screens/clothes/trash/index.dart';
+import 'package:wardrobe/screens/clothes/used/index.dart';
 import 'package:wardrobe/screens/clothes/wash/index.dart';
 
 class ClothesPage extends StatefulWidget {
@@ -39,6 +40,14 @@ class StateClothesPageState extends State<ClothesPage> {
                   //
                 },
               ),
+              MoleculesMenuButton(
+                  title: "Used History",
+                  desc:
+                      "Wanna see the used history of all your clothes? so you can decide the next clothes to use",
+                  urlImage: "assets/images/generate_outfit.jpg",
+                  action: () {
+                    Get.to(const UsedPage());
+                  }),
               MoleculesMenuButton(
                   title: "Generated Outfit",
                   desc:

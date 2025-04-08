@@ -232,3 +232,37 @@ List<WashHistoryModel> washHistoryModelFromJson(String jsonData) {
   return List<WashHistoryModel>.from(
       data['data']['data'].map((item) => WashHistoryModel.fromJson(item)));
 }
+
+class UsedHistoryModel {
+  String id;
+  String clothesName;
+  String clothesType;
+  String? clothesNote;
+  String usedContext;
+  String createdAt;
+
+  UsedHistoryModel(
+      {required this.id,
+      required this.clothesName,
+      required this.clothesType,
+      this.clothesNote,
+      required this.usedContext,
+      required this.createdAt});
+
+  factory UsedHistoryModel.fromJson(Map<String, dynamic> map) {
+    return UsedHistoryModel(
+      id: map['id'],
+      clothesName: map['clothes_name'],
+      clothesType: map['clothes_type'],
+      clothesNote: map['clothes_note'],
+      usedContext: map['used_context'],
+      createdAt: map['created_at'],
+    );
+  }
+}
+
+List<UsedHistoryModel> usedHistoryModelFromJson(String jsonData) {
+  final data = json.decode(jsonData);
+  return List<UsedHistoryModel>.from(
+      data['data']['data'].map((item) => UsedHistoryModel.fromJson(item)));
+}
