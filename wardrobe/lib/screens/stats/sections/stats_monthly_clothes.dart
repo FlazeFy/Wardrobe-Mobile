@@ -60,7 +60,7 @@ class _StatsSectionMonthlyClothesState
 
   Widget _buildListView(List<TwoLineData> contents) {
     return Container(
-        margin: const EdgeInsets.all(spaceSM),
+        margin: const EdgeInsets.only(bottom: spaceLG),
         child: moleculesChartTwoLine(chartData, 'Clothes Monthly Activity',
             null, 'Total Buyed', 'Total Created'));
   }

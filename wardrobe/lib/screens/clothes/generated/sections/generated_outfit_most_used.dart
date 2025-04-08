@@ -58,7 +58,7 @@ class _GeneratedOutfitSectionMostUsedState
 
   Widget _buildListView(List<SingleLineData> contents) {
     return Container(
-        margin: const EdgeInsets.all(spaceSM),
+        margin: const EdgeInsets.only(bottom: spaceLG),
         child: moleculesChartSingleBar(chartData, 'Most Used', null, 'Total'));
   }
 }

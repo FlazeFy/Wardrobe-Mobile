@@ -4,16 +4,16 @@ import 'package:wardrobe/modules/api/stats/model/queries.dart';
 import 'package:wardrobe/modules/api/stats/services/queries.dart';
 import 'package:wardrobe/molecules/m_chart_single_line.dart';
 
-class GeneratedOutfitSectionMonthlyTotalUsed extends StatefulWidget {
-  const GeneratedOutfitSectionMonthlyTotalUsed({super.key});
+class UsedSectionMonthlyClothesUsed extends StatefulWidget {
+  const UsedSectionMonthlyClothesUsed({super.key});
 
   @override
-  State<GeneratedOutfitSectionMonthlyTotalUsed> createState() =>
-      _GeneratedOutfitSectionMonthlyTotalUsedState();
+  State<UsedSectionMonthlyClothesUsed> createState() =>
+      _UsedSectionMonthlyClothesUsedState();
 }
 
-class _GeneratedOutfitSectionMonthlyTotalUsedState
-    extends State<GeneratedOutfitSectionMonthlyTotalUsed> {
+class _UsedSectionMonthlyClothesUsedState
+    extends State<UsedSectionMonthlyClothesUsed> {
   List<SingleLineData> chartData = [];
   StatsQueriesService? apiService;
 
@@ -28,7 +28,7 @@ class _GeneratedOutfitSectionMonthlyTotalUsedState
     return SafeArea(
       maintainBottomViewPadding: false,
       child: FutureBuilder(
-        future: apiService?.getOutfitMonthlyTotalUsed('2025'),
+        future: apiService?.getStatsClothesMonthlyUsed('2025'),
         builder: (BuildContext context,
             AsyncSnapshot<List<QueriesPieChartModel>> snapshot) {
           if (snapshot.hasError) {
@@ -59,7 +59,7 @@ class _GeneratedOutfitSectionMonthlyTotalUsedState
   Widget _buildListView(List<SingleLineData> contents) {
     return Container(
         margin: const EdgeInsets.only(bottom: spaceLG),
-        child:
-            moleculesChartSingleLine(chartData, 'Monthly Used', null, 'Total'));
+        child: moleculesChartSingleLine(
+            chartData, 'Total Used Clothes per Month', null, 'Total'));
   }
 }
