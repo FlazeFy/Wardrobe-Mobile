@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/modules/api/clothes/model/queries.dart';
 import 'package:wardrobe/modules/api/clothes/service/queries.dart';
 import 'package:wardrobe/molecules/m_top_bar.dart';
 import 'package:wardrobe/screens/clothes/detail/sections/detail_clothes_header.dart';
+import 'package:wardrobe/screens/clothes/detail/sections/detail_schedule.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({Key? key, required this.id}) : super(key: key);
@@ -50,7 +52,7 @@ class StateDetailPageState extends State<DetailPage> {
         appBar: const PreferredSize(
             preferredSize: Size.fromHeight(kToolbarHeight),
             child: MoleculesTopBar(title: "Used History Page")),
-        body: ListView(children: [
+        body: ListView(padding: const EdgeInsets.all(spaceMD), children: [
           DetailSectionClothesHeader(
               clothesCategory: data?.detail.clothesCategory ?? "",
               clothesType: data?.detail.clothesType ?? "",
@@ -58,7 +60,9 @@ class StateDetailPageState extends State<DetailPage> {
               clothesDesc: data?.detail.clothesDesc,
               clothesImage: data?.detail.clothesImage,
               id: widget.id,
-              clothesName: data?.detail.clothesName ?? "")
+              clothesName: data?.detail.clothesName ?? ""),
+          const SizedBox(height: spaceMD),
+          DetailSectionSchedule(schedule: data?.schedule ?? [])
         ]));
   }
 }

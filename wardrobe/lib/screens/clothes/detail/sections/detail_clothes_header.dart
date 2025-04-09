@@ -57,88 +57,83 @@ class DetailSectionClothesHeader extends StatelessWidget {
       );
     }
 
-    return Container(
-        margin: const EdgeInsets.all(spaceMD),
-        child: Column(children: [
-          Container(
-            margin: const EdgeInsets.only(right: spaceMD),
-            decoration: BoxDecoration(
-                color: greyColor,
-                borderRadius: BorderRadius.circular(roundedLG)),
-            width: Get.width * 0.5,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(roundedJumbo + roundedJumbo),
-              child:
-                  Image.asset('assets/images/footwear.png', width: Get.width),
-            ),
+    return Column(children: [
+      Container(
+        margin: const EdgeInsets.only(right: spaceMD),
+        decoration: BoxDecoration(
+            color: greyColor, borderRadius: BorderRadius.circular(roundedLG)),
+        width: Get.width * 0.5,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(roundedJumbo + roundedJumbo),
+          child: Image.asset('assets/images/footwear.png', width: Get.width),
+        ),
+      ),
+      const SizedBox(height: spaceLG),
+      Row(
+        children: [
+          headerCategoryBox("Category", clothesCategory),
+          headerCategoryBox("Type", clothesType),
+          headerCategoryBox("Size", clothesSize)
+        ],
+      ),
+      const SizedBox(height: spaceLG),
+      Container(
+        width: Get.width,
+        padding: const EdgeInsets.all(spaceLG),
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(roundedXLG)),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [infoBG, primaryLightBG],
           ),
-          const SizedBox(height: spaceLG),
-          Row(
+        ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const Row(
             children: [
-              headerCategoryBox("Category", clothesCategory),
-              headerCategoryBox("Type", clothesType),
-              headerCategoryBox("Size", clothesSize)
-            ],
-          ),
-          const SizedBox(height: spaceLG),
-          Container(
-            width: Get.width,
-            padding: const EdgeInsets.all(spaceLG),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(roundedXLG)),
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [infoBG, primaryLightBG],
-              ),
-            ),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AtomsText(
-                        type: "content-sub-title",
-                        text: "Export Data",
-                        color: whiteColor,
-                      ),
-                      AtomsButton(
-                        type: "btn-success",
-                        text: "Download PDF",
-                        icon: FaIcon(
-                          FontAwesomeIcons.download,
-                          color: whiteColor,
-                          size: textXMD,
-                        ),
-                      )
-                    ],
+                  AtomsText(
+                    type: "content-sub-title",
+                    text: "Export Data",
+                    color: whiteColor,
                   ),
+                  AtomsButton(
+                    type: "btn-success",
+                    text: "Download PDF",
+                    icon: FaIcon(
+                      FontAwesomeIcons.download,
+                      color: whiteColor,
+                      size: textXMD,
+                    ),
+                  )
                 ],
               ),
-              const Divider(
-                color: darkColor,
-                height: spaceLG,
-              ),
-              AtomsText(
-                text: ucFirstWord(clothesName),
-                type: "content-title-main",
-                color: blackColor,
-              ),
-              clothesDesc != null
-                  ? AtomsText(
-                      text: "$clothesDesc",
-                      type: "content-body",
-                      color: blackColor,
-                    )
-                  : const AtomsText(
-                      text: "No Description Provided",
-                      type: "no-data",
-                      color: blackColor,
-                    )
-            ]),
-          )
-        ]));
+            ],
+          ),
+          const Divider(
+            color: darkColor,
+            height: spaceLG,
+          ),
+          AtomsText(
+            text: ucFirstWord(clothesName),
+            type: "content-title-main",
+            color: blackColor,
+          ),
+          clothesDesc != null
+              ? AtomsText(
+                  text: "$clothesDesc",
+                  type: "content-body",
+                  color: blackColor,
+                )
+              : const AtomsText(
+                  text: "No Description Provided",
+                  type: "no-data",
+                  color: blackColor,
+                )
+        ]),
+      )
+    ]);
   }
 }
