@@ -54,7 +54,7 @@ class StateOrganismsExportBox extends State<OrganismsExportBox> {
                   type: 'btn-success',
                   text: "Download ${widget.type}",
                   action: () async {
-                    await apiQuery.getExport(widget.ctx, widget.type);
+                    await apiQuery.getExportExcel(widget.ctx, widget.type);
                   },
                   icon: const FaIcon(
                     FontAwesomeIcons.download,

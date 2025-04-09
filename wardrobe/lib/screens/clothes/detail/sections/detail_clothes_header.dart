@@ -4,9 +4,20 @@ import 'package:get/get.dart';
 import 'package:wardrobe/atoms/a_button.dart';
 import 'package:wardrobe/atoms/a_text.dart';
 import 'package:wardrobe/design_tokens/style.dart';
+import 'package:wardrobe/modules/api/export/service/queries.dart';
 import 'package:wardrobe/modules/helpers/converter.dart';
 
-class DetailSectionClothesHeader extends StatelessWidget {
+class DetailSectionClothesHeader extends StatefulWidget {
+  const DetailSectionClothesHeader(
+      {Key? key,
+      required this.clothesCategory,
+      required this.clothesType,
+      required this.clothesSize,
+      required this.id,
+      required this.clothesName,
+      this.clothesDesc,
+      this.clothesImage})
+      : super(key: key);
   final String clothesCategory;
   final String clothesType;
   final String clothesSize;
@@ -15,15 +26,19 @@ class DetailSectionClothesHeader extends StatelessWidget {
   final String? clothesDesc;
   final String? clothesImage;
 
-  const DetailSectionClothesHeader(
-      {super.key,
-      required this.clothesCategory,
-      required this.clothesType,
-      required this.clothesSize,
-      required this.id,
-      required this.clothesName,
-      this.clothesDesc,
-      this.clothesImage});
+  @override
+  StateDetailSectionClothesHeaderState createState() =>
+      StateDetailSectionClothesHeaderState();
+}
+
+class StateDetailSectionClothesHeaderState
+    extends State<DetailSectionClothesHeader> {
+  ExportQueriesService? apiQuery;
+  @override
+  void initState() {
+    super.initState();
+    apiQuery = ExportQueriesService();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,9 +86,9 @@ class DetailSectionClothesHeader extends StatelessWidget {
       const SizedBox(height: spaceLG),
       Row(
         children: [
-          headerCategoryBox("Category", clothesCategory),
-          headerCategoryBox("Type", clothesType),
-          headerCategoryBox("Size", clothesSize)
+          headerCategoryBox("Category", widget.clothesCategory),
+          headerCategoryBox("Type", widget.clothesType),
+          headerCategoryBox("Size", widget.clothesSize)
         ],
       ),
       const SizedBox(height: spaceLG),
@@ -89,12 +104,12 @@ class DetailSectionClothesHeader extends StatelessWidget {
           ),
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const Row(
+          Row(
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AtomsText(
+                  const AtomsText(
                     type: "content-sub-title",
                     text: "Export Data",
                     color: whiteColor,
@@ -102,11 +117,14 @@ class DetailSectionClothesHeader extends StatelessWidget {
                   AtomsButton(
                     type: "btn-success",
                     text: "Download PDF",
-                    icon: FaIcon(
+                    icon: const FaIcon(
                       FontAwesomeIcons.download,
                       color: whiteColor,
                       size: textXMD,
                     ),
+                    action: () async {
+                      await apiQuery?.getExportPdf('clothes', widget.id);
+                    },
                   )
                 ],
               ),
@@ -117,13 +135,13 @@ class DetailSectionClothesHeader extends StatelessWidget {
             height: spaceLG,
           ),
           AtomsText(
-            text: ucFirstWord(clothesName),
+            text: ucFirstWord(widget.clothesName),
             type: "content-title-main",
             color: blackColor,
           ),
-          clothesDesc != null
+          widget.clothesDesc != null
               ? AtomsText(
-                  text: "$clothesDesc",
+                  text: "${widget.clothesDesc}",
                   type: "content-body",
                   color: blackColor,
                 )

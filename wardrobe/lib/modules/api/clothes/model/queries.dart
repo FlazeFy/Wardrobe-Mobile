@@ -272,7 +272,7 @@ class ClothesDetailModel {
   List<UsedHistoryClothesDetailModel>? usedHistory;
   int totalUsedHistory;
   String? lastUsedHistory;
-  dynamic? washHistory;
+  dynamic washHistory;
   List<ScheduleModel>? schedule;
   List<OutfitModel>? outfit;
 
