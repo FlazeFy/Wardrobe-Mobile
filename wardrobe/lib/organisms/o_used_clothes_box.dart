@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:wardrobe/atoms/a_button.dart';
 import 'package:wardrobe/atoms/a_text.dart';
 import 'package:wardrobe/design_tokens/style.dart';
-import 'package:wardrobe/modules/api/clothes/model/queries.dart';
 import 'package:wardrobe/modules/helpers/converter.dart';
 import 'package:wardrobe/screens/clothes/used/sections/used_hard_delete_used_history.dart';
 

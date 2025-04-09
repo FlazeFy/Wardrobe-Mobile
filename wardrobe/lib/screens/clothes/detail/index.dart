@@ -6,6 +6,7 @@ import 'package:wardrobe/modules/api/clothes/service/queries.dart';
 import 'package:wardrobe/modules/helpers/converter.dart';
 import 'package:wardrobe/molecules/m_menu_button.dart';
 import 'package:wardrobe/molecules/m_top_bar.dart';
+import 'package:wardrobe/screens/clothes/detail/generated/index.dart';
 import 'package:wardrobe/screens/clothes/detail/sections/detail_clothes_header.dart';
 import 'package:wardrobe/screens/clothes/detail/sections/detail_schedule.dart';
 import 'package:wardrobe/screens/clothes/detail/used/index.dart';
@@ -79,14 +80,18 @@ class StateDetailPageState extends State<DetailPage> {
                     action: () {
                       Get.to(DetailUsedPage(
                           items: data.usedHistory ?? [],
-                          clothesName: data?.detail.clothesName ?? ""));
+                          clothesName: data.detail.clothesName));
                     }),
                 MoleculesMenuButton(
                     title: "Generated Outfit",
                     desc:
                         "This clothes has found in ${data.outfit != null ? data.outfit?.length : 0} outfit",
                     urlImage: "assets/images/generate_outfit.jpg",
-                    action: () {}),
+                    action: () {
+                      Get.to(DetailGeneratedOutfitPage(
+                          items: data.outfit ?? [],
+                          clothesName: data.detail.clothesName));
+                    }),
               ],
             ),
           ),
