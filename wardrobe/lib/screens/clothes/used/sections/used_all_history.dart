@@ -46,7 +46,12 @@ class StateUsedSectionAllHistory extends State<UsedSectionAllHistory> {
   Widget _buildListView(List<UsedHistoryModel> data) {
     if (data.isNotEmpty) {
       return Column(
-        children: data.map((dt) => OrganismsUsedClothesBox(item: dt)).toList(),
+        children: data
+            .map((dt) => OrganismsUsedClothesBox(
+                  item: dt,
+                  source: "all_history",
+                ))
+            .toList(),
       );
     } else {
       return const Text("Unknown error, please contact the admin");

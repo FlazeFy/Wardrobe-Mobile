@@ -8,9 +8,11 @@ import 'package:wardrobe/modules/helpers/converter.dart';
 import 'package:wardrobe/screens/clothes/used/sections/used_hard_delete_used_history.dart';
 
 class OrganismsUsedClothesBox extends StatelessWidget {
-  final UsedHistoryModel item;
+  final String source;
+  final dynamic item;
 
-  const OrganismsUsedClothesBox({super.key, required this.item});
+  const OrganismsUsedClothesBox(
+      {super.key, required this.item, required this.source});
 
   @override
   Widget build(BuildContext context) {
@@ -24,21 +26,23 @@ class OrganismsUsedClothesBox extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                AtomsText(
-                  type: "content-title",
-                  text: item.clothesName,
-                  color: blackColor,
-                  marginBottom: spaceMini,
-                ),
-                const Spacer(),
-                AtomsButton(
-                  type: "btn-tag",
-                  text: ucFirstWord(item.clothesType),
-                ),
-              ],
-            ),
+            source == "all_history"
+                ? Row(
+                    children: [
+                      AtomsText(
+                        type: "content-title",
+                        text: item.clothesName,
+                        color: blackColor,
+                        marginBottom: spaceMini,
+                      ),
+                      const Spacer(),
+                      AtomsButton(
+                        type: "btn-tag",
+                        text: ucFirstWord(item.clothesType),
+                      ),
+                    ],
+                  )
+                : const SizedBox(),
             item.clothesNote != null
                 ? AtomsText(
                     type: "content-sub-title",

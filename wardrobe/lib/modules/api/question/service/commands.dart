@@ -69,7 +69,8 @@ class QuestionCommandsService {
 
   Future<void> syncQuestions() async {
     final connectivityResult = await (Connectivity().checkConnectivity());
-    const token = '286|L5fqrLCDDCzPRLKngtm2FM9wq1IU2xFZSVAm10yp874a1a85';
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('auth_key');
 
     if (connectivityResult != ConnectivityResult.none) {
       List<AskQuestionModel> tempQuestion =

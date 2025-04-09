@@ -49,18 +49,18 @@ class StateDetailSectionScheduleState extends State<DetailSectionSchedule> {
               GridColumn(
                   columnName: 'day',
                   label: const Padding(
-                      padding: EdgeInsets.all(spaceMD),
+                      padding: EdgeInsets.all(spaceSM),
                       child: AtomsText(type: "input-label", text: "Day"))),
               GridColumn(
                   columnName: 'note',
                   label: const Padding(
-                    padding: EdgeInsets.all(spaceMD),
+                    padding: EdgeInsets.all(spaceSM),
                     child: AtomsText(type: "input-label", text: "Notes"),
                   )),
               GridColumn(
                 columnName: 'createdAt',
                 label: Container(
-                  padding: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(spaceSM),
                   alignment: Alignment.center,
                   child:
                       const AtomsText(type: "input-label", text: "Created At"),
@@ -69,7 +69,7 @@ class StateDetailSectionScheduleState extends State<DetailSectionSchedule> {
               GridColumn(
                 columnName: 'delete',
                 label: Container(
-                  padding: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(spaceSM),
                   alignment: Alignment.center,
                   child: const AtomsText(type: "input-label", text: "Delete"),
                 ),
