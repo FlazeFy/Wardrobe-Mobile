@@ -6,6 +6,7 @@ import 'package:wardrobe/atoms/a_text.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/modules/api/clothes/model/queries.dart';
 import 'package:wardrobe/modules/helpers/converter.dart';
+import 'package:wardrobe/screens/clothes/detail/index.dart';
 
 class OrganismsClothesHeader extends StatelessWidget {
   final ClothesHeaderAllModel item;
@@ -118,9 +119,9 @@ class OrganismsClothesHeader extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: spaceMD),
-                const Row(
+                Row(
                   children: [
-                    AtomsButton(
+                    const AtomsButton(
                         type: 'btn-success',
                         text: 'Use It Now!',
                         icon: FaIcon(
@@ -128,15 +129,18 @@ class OrganismsClothesHeader extends StatelessWidget {
                           size: textMD,
                           color: whiteColor,
                         )),
-                    SizedBox(width: spaceXXSM),
+                    const SizedBox(width: spaceXXSM),
                     AtomsButton(
                       type: 'btn-primary',
                       text: 'Detail',
-                      icon: FaIcon(
+                      icon: const FaIcon(
                         FontAwesomeIcons.arrowRight,
                         size: textMD,
                         color: whiteColor,
                       ),
+                      action: () {
+                        Get.to(DetailPage(id: item.id));
+                      },
                     )
                   ],
                 )

@@ -4,10 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:wardrobe/atoms/a_button.dart';
 import 'package:wardrobe/design_tokens/style.dart';
-import 'package:wardrobe/modules/api/auth/service/queries.dart';
 import 'package:wardrobe/modules/api/clothes/service/commands.dart';
 import 'package:wardrobe/screens/clothes/used/index.dart';
-import 'package:wardrobe/screens/landing/index.dart';
 
 class UsedSectionHardDeleteUsedHistory extends StatefulWidget {
   const UsedSectionHardDeleteUsedHistory({super.key, required this.id});

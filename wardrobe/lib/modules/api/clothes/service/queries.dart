@@ -391,4 +391,44 @@ class ClothesQueriesService {
       }
     }
   }
+
+  Future<ClothesDetailModel?> getClothesDetail(String id) async {
+    final prefs = await SharedPreferences.getInstance();
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    final token = prefs.getString('auth_key');
+    final header = {
+      'Accept': 'application/json',
+      'Authorization': "Bearer $token",
+    };
+
+    if (connectivityResult == ConnectivityResult.none) {
+      if (!isOffline) {
+        Get.snackbar("Warning", "Lost connection, all data shown are local",
+            colorText: whiteColor,
+            backgroundColor: darkColor,
+            borderColor: primaryColor,
+            borderWidth: spaceMini / 2.5);
+        isOffline = true;
+      }
+      return null;
+    } else {
+      final response = await client
+          .get(Uri.parse("$emuUrl/api/v1/clothes/detail/$id"), headers: header);
+      if (response.statusCode == 200) {
+        if (isOffline) {
+          Get.snackbar("Information", "Welcome back, all data are now realtime",
+              colorText: whiteColor,
+              backgroundColor: darkColor,
+              borderColor: primaryColor,
+              borderWidth: spaceMini / 2.5);
+          isOffline = false;
+        }
+        return clothesDetailModelFromJson(response.body);
+      } else if (response.statusCode == 401) {
+        return null;
+      } else {
+        return null;
+      }
+    }
+  }
 }
