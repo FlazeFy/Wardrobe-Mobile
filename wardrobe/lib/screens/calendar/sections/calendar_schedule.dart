@@ -6,6 +6,7 @@ import 'package:wardrobe/atoms/a_text.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/modules/api/stats/model/queries.dart';
 import 'package:wardrobe/modules/api/stats/services/queries.dart';
+import 'package:wardrobe/screens/calendar/sections/calendar_export_daily_data.dart';
 
 class CalendarSectionSchedule extends StatefulWidget {
   const CalendarSectionSchedule({super.key});
@@ -88,11 +89,11 @@ class StateCalendarSectionSchedule extends State<CalendarSectionSchedule> {
                           color: blackColor),
                       const Spacer(),
                       allSchedules.isNotEmpty
-                          ? const SizedBox(
+                          ? SizedBox(
                               width: 140,
                               child: Row(
                                 children: [
-                                  Expanded(
+                                  const Expanded(
                                       child: AtomsButton(
                                     type: "btn-warning",
                                     icon: FaIcon(
@@ -101,16 +102,8 @@ class StateCalendarSectionSchedule extends State<CalendarSectionSchedule> {
                                       color: whiteColor,
                                     ),
                                   )),
-                                  SizedBox(width: spaceMini),
-                                  Expanded(
-                                      child: AtomsButton(
-                                    type: "btn-primary",
-                                    icon: FaIcon(
-                                      FontAwesomeIcons.print,
-                                      size: textMD,
-                                      color: whiteColor,
-                                    ),
-                                  )),
+                                  const SizedBox(width: spaceMini),
+                                  CalendarSectionExportDailyData(date: dt.date)
                                 ],
                               ),
                             )

@@ -68,7 +68,7 @@ class ExportQueriesService {
         final status = await Permission.storage.request();
         if (!status.isGranted) {
           Get.snackbar("Permission Denied",
-              "Storage access is required to download files.");
+              "Storage access is required to download files");
           return;
         }
 
@@ -100,7 +100,7 @@ class ExportQueriesService {
             borderWidth: spaceMini / 2.5);
       }
     } catch (e) {
-      Get.snackbar("Error", "Failed to download file: $e",
+      Get.snackbar("Error", "Failed to download file",
           colorText: whiteColor,
           backgroundColor: darkColor,
           borderColor: primaryColor,
@@ -108,7 +108,7 @@ class ExportQueriesService {
     }
   }
 
-  Future<void> getExportPdf(String ctx, String id) async {
+  Future<void> getExportPdfClothesDetail(String ctx, String id) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_key');
 
@@ -147,7 +147,7 @@ class ExportQueriesService {
         final status = await Permission.storage.request();
         if (!status.isGranted) {
           Get.snackbar("Permission Denied",
-              "Storage access is required to download files.");
+              "Storage access is required to download files");
           return;
         }
 
@@ -164,8 +164,7 @@ class ExportQueriesService {
               context: getCleanTitleFromCtx(ctx),
             ));
 
-        Get.snackbar(
-            "Success!", "Clothes detail downloaded and preview opened.",
+        Get.snackbar("Success!", "Clothes detail downloaded and preview opened",
             colorText: whiteColor,
             backgroundColor: darkColor,
             borderColor: primaryColor,
@@ -182,7 +181,88 @@ class ExportQueriesService {
             borderWidth: spaceMini / 2.5);
       }
     } catch (e) {
-      Get.snackbar("Error", "Failed to download file: $e",
+      Get.snackbar("Error", "Failed to download file",
+          colorText: whiteColor,
+          backgroundColor: darkColor,
+          borderColor: primaryColor,
+          borderWidth: spaceMini / 2.5);
+    }
+  }
+
+  Future<void> getExportPdfCalendarDaily(String ctx, String date) async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('auth_key');
+
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+      Get.snackbar("Warning", "Lost connection, try again later",
+          colorText: whiteColor,
+          backgroundColor: darkColor,
+          borderColor: primaryColor,
+          borderWidth: spaceMini / 2.5);
+      isOffline = true;
+      return;
+    }
+
+    final headers = {
+      'Accept': 'application/pdf',
+      'Authorization': 'Bearer $token',
+    };
+
+    try {
+      final response = await client.get(
+        Uri.parse("$emuUrl/api/v1/export/$ctx/calendar/pdf/$date"),
+        headers: headers,
+      );
+
+      if (response.statusCode == 200) {
+        if (isOffline) {
+          Get.snackbar("Information", "Welcome back, all data are now realtime",
+              colorText: whiteColor,
+              backgroundColor: darkColor,
+              borderColor: primaryColor,
+              borderWidth: spaceMini / 2.5);
+          isOffline = false;
+        }
+
+        final status = await Permission.storage.request();
+        if (!status.isGranted) {
+          Get.snackbar("Permission Denied",
+              "Storage access is required to download files");
+          return;
+        }
+
+        final bytes = response.bodyBytes;
+        final filename = 'calendar-daily-$date.pdf';
+        final dir = await getExternalStorageDirectory();
+        final path = '${dir!.path}/$filename';
+        final file = File(path);
+        await file.writeAsBytes(bytes);
+
+        Get.to(() => PdfGeneratedPage(
+              filePath: path,
+              items: const [],
+              context: getCleanTitleFromCtx(ctx),
+            ));
+
+        Get.snackbar("Success!", "Calendar daily report downloaded and opened",
+            colorText: whiteColor,
+            backgroundColor: darkColor,
+            borderColor: primaryColor,
+            borderWidth: spaceMini / 2.5);
+      } else {
+        if (response.statusCode == 401) {
+          Get.to(() => const LoginPage());
+        }
+
+        Get.snackbar("Warning", "Clothes detail failed to download",
+            colorText: whiteColor,
+            backgroundColor: darkColor,
+            borderColor: primaryColor,
+            borderWidth: spaceMini / 2.5);
+      }
+    } catch (e) {
+      Get.snackbar("Error", "Failed to download file",
           colorText: whiteColor,
           backgroundColor: darkColor,
           borderColor: primaryColor,

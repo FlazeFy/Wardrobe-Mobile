@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:wardrobe/atoms/a_button.dart';
 import 'package:wardrobe/atoms/a_text.dart';
 import 'package:wardrobe/design_tokens/style.dart';
-import 'package:wardrobe/modules/api/export/service/queries.dart';
 import 'package:wardrobe/modules/helpers/converter.dart';
+import 'package:wardrobe/screens/clothes/detail/sections/detail_clothes_export_data.dart';
 
 class DetailSectionClothesHeader extends StatefulWidget {
   const DetailSectionClothesHeader(
@@ -33,13 +31,6 @@ class DetailSectionClothesHeader extends StatefulWidget {
 
 class StateDetailSectionClothesHeaderState
     extends State<DetailSectionClothesHeader> {
-  ExportQueriesService? apiQuery;
-  @override
-  void initState() {
-    super.initState();
-    apiQuery = ExportQueriesService();
-  }
-
   @override
   Widget build(BuildContext context) {
     Widget headerCategoryBox(String title, value) {
@@ -114,18 +105,7 @@ class StateDetailSectionClothesHeaderState
                     text: "Export Data",
                     color: whiteColor,
                   ),
-                  AtomsButton(
-                    type: "btn-success",
-                    text: "Download PDF",
-                    icon: const FaIcon(
-                      FontAwesomeIcons.download,
-                      color: whiteColor,
-                      size: textXMD,
-                    ),
-                    action: () async {
-                      await apiQuery?.getExportPdf('clothes', widget.id);
-                    },
-                  )
+                  DetailSectionClothesExportData(id: widget.id)
                 ],
               ),
             ],
