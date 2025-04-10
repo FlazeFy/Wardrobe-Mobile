@@ -9,6 +9,7 @@ import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/modules/api/clothes/service/commands.dart';
 import 'package:wardrobe/modules/helpers/converter.dart';
 import 'package:wardrobe/screens/clothes/detail/index.dart';
+import 'package:wardrobe/screens/clothes/detail/sections/detail_clothes_recover.dart';
 import 'package:wardrobe/screens/clothes/index.dart';
 
 class DetailSectionClothesDelete extends StatefulWidget {
@@ -163,7 +164,13 @@ class StateDetailSectionClothesDeleteState
                           text:
                               "Want to ${widget.isDeleted ? "permanentally " : ""}delete this clothes?"));
                 },
-              )
+              ),
+              widget.isDeleted
+                  ? Row(children: [
+                      const SizedBox(width: spaceMini),
+                      DetailSectionClothesRecover(id: widget.id)
+                    ])
+                  : const SizedBox()
             ],
           )
         ],

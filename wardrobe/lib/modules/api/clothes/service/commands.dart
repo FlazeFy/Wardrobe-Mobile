@@ -99,4 +99,45 @@ class ClothesCommandsService {
       isOffline = true;
     }
   }
+
+  Future recoverClothes(String id) async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('auth_key');
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    final header = {
+      'Accept': 'application/json',
+      'Authorization': "Bearer $token",
+    };
+
+    if (connectivityResult != ConnectivityResult.none) {
+      final response = await client.put(
+        Uri.parse("$emuUrl/api/v1/clothes/recover/$id"),
+        headers: header,
+      );
+
+      var responseData = jsonDecode(response.body);
+      if ([200, 404, 401, 500].contains(response.statusCode)) {
+        return [
+          {
+            "status": responseData["status"],
+            "message": responseData["message"],
+          }
+        ];
+      } else {
+        return [
+          {
+            "status": "failed",
+            "message": "something wrong. please contact admin"
+          }
+        ];
+      }
+    } else {
+      Get.snackbar("Warning", "Lost connection, try again a few moment letter",
+          colorText: whiteColor,
+          backgroundColor: darkColor,
+          borderColor: primaryColor,
+          borderWidth: spaceMini / 2.5);
+      isOffline = true;
+    }
+  }
 }
