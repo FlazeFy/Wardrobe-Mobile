@@ -100,7 +100,11 @@ class StateDetailPageState extends State<DetailPage> {
           DetailSectionSchedule(schedule: data.schedule ?? []),
           const SizedBox(height: spaceMD),
           DetailSectionClothesDelete(
-              id: widget.id, clothesName: data.detail.clothesName)
+            id: widget.id,
+            clothesName: data.detail.clothesName,
+            isDeleted: data.detail.deletedAt != null ? true : false,
+            deletedAt: data.detail.deletedAt,
+          )
         ]));
   }
 }

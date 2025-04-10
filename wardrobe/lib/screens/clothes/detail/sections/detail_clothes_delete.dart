@@ -7,14 +7,22 @@ import 'package:wardrobe/atoms/a_input.dart';
 import 'package:wardrobe/atoms/a_text.dart';
 import 'package:wardrobe/design_tokens/style.dart';
 import 'package:wardrobe/modules/api/clothes/service/commands.dart';
+import 'package:wardrobe/modules/helpers/converter.dart';
 import 'package:wardrobe/screens/clothes/detail/index.dart';
+import 'package:wardrobe/screens/clothes/index.dart';
 
 class DetailSectionClothesDelete extends StatefulWidget {
   const DetailSectionClothesDelete(
-      {Key? key, required this.id, required this.clothesName})
+      {Key? key,
+      required this.id,
+      required this.clothesName,
+      required this.isDeleted,
+      this.deletedAt})
       : super(key: key);
   final String id;
   final String clothesName;
+  final bool isDeleted;
+  final String? deletedAt;
 
   @override
   StateDetailSectionClothesDeleteState createState() =>
@@ -26,6 +34,7 @@ class StateDetailSectionClothesDeleteState
   ClothesCommandsService? apiCommand;
   final TextEditingController clothesNameController = TextEditingController();
   bool isDeleteDisabled = true;
+  int dayRemain = 0;
 
   @override
   void initState() {
@@ -40,6 +49,10 @@ class StateDetailSectionClothesDeleteState
         });
       }
     });
+
+    if (widget.isDeleted) {
+      dayRemain = countDiffInDays(widget.deletedAt ?? "");
+    }
   }
 
   @override
@@ -60,28 +73,31 @@ class StateDetailSectionClothesDeleteState
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Wrap(
+          Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,
             alignment: WrapAlignment.center,
             children: [
-              FaIcon(
+              const FaIcon(
                 FontAwesomeIcons.triangleExclamation,
                 size: textLG,
               ),
-              SizedBox(width: spaceMini),
+              const SizedBox(width: spaceMini),
               AtomsText(
                 type: "content-title",
-                text: "Delete Clothes",
+                text: widget.isDeleted
+                    ? "Permanentally Delete Clothes"
+                    : "Delete Clothes",
                 color: blackColor,
                 marginBottom: 0,
               )
             ],
           ),
           const SizedBox(height: spaceSM),
-          const AtomsText(
+          AtomsText(
             type: "content-body",
-            text:
-                "You can delete this clothes and still can be Recovered before it pass 30 days since it was deleted. And also you can permanentally delete it right now after normal delete if you want it dissapear before 30 days",
+            text: widget.isDeleted
+                ? "This item has been deleted. You can Recover or Permanentally Delete it. This clothes is 30 days away from permanentally delete"
+                : "You can delete this clothes and still can be Recovered before it pass ${dayRemain != 30 ? 30 - dayRemain : 30} days since it was deleted. And also you can permanentally delete it right now after normal delete if you want it dissapear before 30 days",
             color: blackColor,
             marginBottom: 0,
           ),
@@ -119,15 +135,21 @@ class StateDetailSectionClothesDeleteState
                           },
                           onConfirm: () async {
                             try {
-                              var response = await apiCommand
-                                  ?.softDeleteClothes(widget.id);
+                              var response = await apiCommand?.deleteClothes(
+                                  widget.id,
+                                  widget.isDeleted ? "hard" : "soft");
                               if (response[0]['status'] == 'success') {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          DetailPage(id: widget.id)),
-                                );
+                                if (widget.isDeleted) {
+                                  Get.to(const ClothesPage());
+                                } else {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            DetailPage(id: widget.id)),
+                                  );
+                                }
+
                                 Get.snackbar('Success', response[0]['message']);
                               } else {
                                 Get.snackbar('failed', response[0]['message']);
@@ -138,7 +160,8 @@ class StateDetailSectionClothesDeleteState
                           },
                           type: ArtSweetAlertType.question,
                           title: "Are you sure?",
-                          text: "Want to delete this clothes?"));
+                          text:
+                              "Want to ${widget.isDeleted ? "permanentally " : ""}delete this clothes?"));
                 },
               )
             ],

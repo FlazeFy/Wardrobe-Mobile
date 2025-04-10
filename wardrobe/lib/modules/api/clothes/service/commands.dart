@@ -58,7 +58,7 @@ class ClothesCommandsService {
     }
   }
 
-  Future softDeleteClothes(String id) async {
+  Future deleteClothes(String id, type) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_key');
     final connectivityResult = await (Connectivity().checkConnectivity());
@@ -69,7 +69,8 @@ class ClothesCommandsService {
 
     if (connectivityResult != ConnectivityResult.none) {
       final response = await client.delete(
-        Uri.parse("$emuUrl/api/v1/clothes/delete/$id"),
+        Uri.parse(
+            "$emuUrl/api/v1/clothes/${type == 'hard' ? "destroy" : "delete"}/$id"),
         headers: header,
       );
 

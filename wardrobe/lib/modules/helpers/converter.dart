@@ -131,3 +131,23 @@ String ucFirstWord(String val) {
     rethrow;
   }
 }
+
+int countDiffInDays(String val) {
+  try {
+    final inputDate = DateTime.tryParse(val);
+    if (inputDate == null) {
+      throw Exception("Invalid date format");
+    }
+
+    final today = DateTime.now();
+    final todayDateOnly = DateTime(today.year, today.month, today.day);
+    final inputDateOnly =
+        DateTime(inputDate.year, inputDate.month, inputDate.day);
+
+    final diff = todayDateOnly.difference(inputDateOnly).inDays;
+
+    return diff;
+  } catch (e) {
+    rethrow;
+  }
+}
