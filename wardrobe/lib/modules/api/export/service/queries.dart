@@ -108,6 +108,94 @@ class ExportQueriesService {
     }
   }
 
+  Future<void> getExportExcelCalendar(int year) async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('auth_key');
+
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    final headers = {
+      'Accept':
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'Authorization': 'Bearer $token',
+    };
+
+    if (connectivityResult == ConnectivityResult.none) {
+      Get.snackbar("Warning", "Lost connection, try again later",
+          colorText: whiteColor,
+          backgroundColor: darkColor,
+          borderColor: primaryColor,
+          borderWidth: spaceMini / 2.5);
+      isOffline = true;
+      return;
+    }
+
+    try {
+      final response = await client.get(
+        Uri.parse("$emuUrl/api/v1/export/clothes/calendar/excel/$year"),
+        headers: headers,
+      );
+
+      if (response.statusCode == 200) {
+        if (isOffline) {
+          Get.snackbar("Information", "Welcome back, all data are now realtime",
+              colorText: whiteColor,
+              backgroundColor: darkColor,
+              borderColor: primaryColor,
+              borderWidth: spaceMini / 2.5);
+          isOffline = false;
+        }
+
+        String? filename = 'calendar-$year.xlsx';
+        final contentDisp = response.headers['content-disposition'];
+        if (contentDisp != null && contentDisp.contains('filename=')) {
+          final regex = RegExp(r'filename="?(.+)"?');
+          final match = regex.firstMatch(contentDisp);
+          if (match != null) {
+            filename = match.group(1)!;
+          }
+        }
+
+        final status = await Permission.storage.request();
+        if (!status.isGranted) {
+          Get.snackbar("Permission Denied",
+              "Storage access is required to download files");
+          return;
+        }
+
+        final bytes = response.bodyBytes;
+        final dir = await getExternalStorageDirectory();
+        final downloadPath = dir!.path;
+        final file = File('$downloadPath/$filename');
+        await file.writeAsBytes(bytes);
+
+        // await OpenFile.open(file.path);
+        Get.to(() => ViewExportedExcelPage(filePath: file.path));
+
+        Get.snackbar("Success!", "Calendar data downloaded and opened",
+            colorText: whiteColor,
+            backgroundColor: darkColor,
+            borderColor: primaryColor,
+            borderWidth: spaceMini / 2.5);
+      } else {
+        if (response.statusCode == 401) {
+          Get.to(() => const LoginPage());
+        }
+
+        Get.snackbar("Warning", "Calendar data failed to download",
+            colorText: whiteColor,
+            backgroundColor: darkColor,
+            borderColor: primaryColor,
+            borderWidth: spaceMini / 2.5);
+      }
+    } catch (e) {
+      Get.snackbar("Error", "Failed to download file",
+          colorText: whiteColor,
+          backgroundColor: darkColor,
+          borderColor: primaryColor,
+          borderWidth: spaceMini / 2.5);
+    }
+  }
+
   Future<void> getExportPdfClothesDetail(String ctx, String id) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('auth_key');

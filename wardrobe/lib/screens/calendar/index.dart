@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wardrobe/design_tokens/style.dart';
+import 'package:wardrobe/screens/calendar/sections/calendar_export_data.dart';
 import 'package:wardrobe/screens/calendar/sections/calendar_schedule.dart';
 
 class CalendarPage extends StatefulWidget {
@@ -16,7 +17,10 @@ class StateCalendarPageState extends State<CalendarPage> {
         body: ListView(
       padding:
           const EdgeInsets.symmetric(horizontal: spaceMD, vertical: spaceJumbo),
-      children: const [CalendarSectionSchedule()],
+      children: const [
+        CalendarSectionExportData(year: 2025),
+        CalendarSectionSchedule()
+      ],
     ));
   }
 }
