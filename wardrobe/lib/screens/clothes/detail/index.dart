@@ -7,6 +7,7 @@ import 'package:wardrobe/modules/helpers/converter.dart';
 import 'package:wardrobe/molecules/m_menu_button.dart';
 import 'package:wardrobe/molecules/m_top_bar.dart';
 import 'package:wardrobe/screens/clothes/detail/generated/index.dart';
+import 'package:wardrobe/screens/clothes/detail/sections/detail_clothes_delete.dart';
 import 'package:wardrobe/screens/clothes/detail/sections/detail_clothes_header.dart';
 import 'package:wardrobe/screens/clothes/detail/sections/detail_schedule.dart';
 import 'package:wardrobe/screens/clothes/detail/used/index.dart';
@@ -96,7 +97,10 @@ class StateDetailPageState extends State<DetailPage> {
             ),
           ),
           const SizedBox(height: spaceMD),
-          DetailSectionSchedule(schedule: data.schedule ?? [])
+          DetailSectionSchedule(schedule: data.schedule ?? []),
+          const SizedBox(height: spaceMD),
+          DetailSectionClothesDelete(
+              id: widget.id, clothesName: data.detail.clothesName)
         ]));
   }
 }

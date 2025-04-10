@@ -8,6 +8,7 @@ class AtomsButton extends StatelessWidget {
   final dynamic action;
   final dynamic icon;
   final Color? color;
+  final bool? isDisabled;
 
   const AtomsButton(
       {super.key,
@@ -15,7 +16,8 @@ class AtomsButton extends StatelessWidget {
       this.text,
       this.action,
       this.icon,
-      this.color});
+      this.color,
+      this.isDisabled});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class AtomsButton extends StatelessWidget {
         type == 'btn-primary' ||
         type == 'btn-danger' ||
         type == 'btn-warning') {
-      List<Color> gradientColors = (type == 'btn-success')
+      List<Color> baseColors = (type == 'btn-success')
           ? [successDarkBG, successBG]
           : (type == 'btn-primary')
               ? [darkInfoBG, infoBG]
@@ -31,8 +33,12 @@ class AtomsButton extends StatelessWidget {
                   ? [warningDarkBG, warningBG]
                   : [dangerDarkBG, dangerBG];
 
+      List<Color> gradientColors = isDisabled == true
+          ? baseColors.map((c) => c.withOpacity(0.5)).toList()
+          : baseColors;
+
       return InkWell(
-          onTap: action,
+          onTap: isDisabled == true ? () {} : action,
           child: Container(
             padding: const EdgeInsets.symmetric(
                 vertical: spaceSM, horizontal: spaceMD),
@@ -81,7 +87,7 @@ class AtomsButton extends StatelessWidget {
       );
     } else if (type == 'btn-icon') {
       return InkWell(
-        onTap: action,
+        onTap: isDisabled == true ? () {} : action,
         child: Container(
           width: 46,
           height: 46,
